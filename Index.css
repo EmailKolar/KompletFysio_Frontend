@@ -1,0 +1,30 @@
+
+.headerContainer{
+    padding: 15px;
+}
+.overHeaderContainer {
+    background-color: #6564ab;
+    padding:11px 10px 0px 10px;
+}
+.overHeaderContainer .contactInfo {
+    float:right;
+    margin-left: 30px;
+    display:flex;
+    color:white;
+    font-size:14px
+}
+.linkContainer {
+    display:flex;
+    height: fit-content;
+    justify-content: right;
+}
+.navbar {
+    margin-top: 100px;
+}
+.bannerContainer {
+    height:500px;
+    background-color: lightgray;
+}
+.navbar {
+    justify-content: flex-end;
+}
