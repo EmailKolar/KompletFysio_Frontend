@@ -2,8 +2,8 @@
 //     keyboard: false
 // });
 
-let button = document.getElementById("openModal");
+const button = document.getElementById("openModal");
 
-button.addEventListener("click", () => {
-    // myModal.toggle();
+button.addEventListener('click', () => {
+    console.log("clicked!")
 });
