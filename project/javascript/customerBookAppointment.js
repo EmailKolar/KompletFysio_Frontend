@@ -27,17 +27,16 @@ function nextStep() {
             //logic for choose treatment (dropdown?)
             break
         case 3:
-            console.log("choose date")
-            //logic for choose date (based on chosen treatment and which employees are applicable)
-            //TODO DB ved ikke hvilke Employees der laver hvilket treatments
-            break
-        case 4:
-            console.log("choose time")
-            //logic for choose time
-            break
-        case 5:
             console.log("choose employee")
             //logic for choose employee (dropdown with applicable employees based on chosen treatment, date and time)
+            break
+        case 4:
+            console.log("choose date")
+            //logic for choose date (based on chosen treatment and which employees are applicable)
+            break
+        case 5:
+            console.log("choose time")
+            //logic for choose time
             break
         case 6:
             console.log("done")
