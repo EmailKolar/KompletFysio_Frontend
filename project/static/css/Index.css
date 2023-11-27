@@ -28,3 +28,25 @@
 .navbar {
     justify-content: flex-end;
 }
+
+
+
+/*--------------------------------------------*/
+/*Dropdown*/
+.sub-menu-1 {
+    display: none;
+}
+ul li:hover .sub-menu-1 {
+    display: block;
+    position: absolute;
+/*    ^^todo make it % and not px*/
+}
+.sub-menu-2 {
+    display: none;
+}
+.hover-me:hover .sub-menu-2 {
+    display: block;
+    position: absolute;
+    margin-top: -20%;
+    margin-left: 70%;
+}
