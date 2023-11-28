@@ -1,0 +1,5 @@
+.bannerContainer {
+    height:250px;
+    background-image: url("project/static/img/banner_1.jpg");
+    background-color: lightgray;
+}
