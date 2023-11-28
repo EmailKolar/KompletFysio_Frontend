@@ -33,20 +33,19 @@
 
 /*--------------------------------------------*/
 /*Dropdown*/
-.sub-menu-1 {
-    display: none;
+.dropdown-menu li {
+    position: relative;
 }
-ul li:hover .sub-menu-1 {
+.dropdown-menu .dropdown-submenu {
     display: block;
     position: absolute;
-/*    ^^todo make it % and not px*/
+    left: 100%;
+    top: -7px;
 }
-.sub-menu-2 {
-    display: none;
+.dropdown-menu .dropdown-submenu-left {
+    right: 100%;
+    left: auto;
 }
-.hover-me:hover .sub-menu-2 {
+.dropdown-menu > li:hover > .dropdown-submenu {
     display: block;
-    position: absolute;
-    margin-top: -20%;
-    margin-left: 70%;
 }
