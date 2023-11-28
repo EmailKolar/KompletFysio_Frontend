@@ -11,7 +11,7 @@ const cancelBtn = document.getElementById("cancelBtn")
 
 function nextStep() {
 
-    // Hide the current step in the Modal
+    // Hide the current step/body in the Modal (see "modal-body" in customerBookAppointment)
     document.getElementById(`step${currentStep}Content`).style.display = 'none'
     currentStep++;
 

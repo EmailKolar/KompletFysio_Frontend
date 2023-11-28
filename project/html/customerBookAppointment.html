@@ -18,7 +18,7 @@
 <!-- Modal -->
 <div class="modal fade" id="newAppointmentModal" data-bs-backdrop="static" data-bs-keyboard="false"
      aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-fullscreen-sm-down">
 
         <div class="modal-content">
 
@@ -49,13 +49,71 @@
 
                 <!-- Choose Employee -->
                 <div id="step2Content" style="display: none;">
-                    Step 2: Vælg Employee
+                    <!-- treatment input -->
+                    <div class="container">
+                        <div class="row">
+                            <div class="col">
+                                <div class="dropdown">
+                                    <button type="button" class="btn btn-primary dropdown-toggle"
+                                            data-bs-toggle="dropdown">
+                                        Fysio- & sportsfysioterapi
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li class="dropdown-item"> Treatment 1</li>
+                                        <li class="dropdown-item"> Treatment 2</li>
+                                        <li class="dropdown-item"> Treatment 3</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="dropdown">
+                                    <button type="button" class="btn btn-primary dropdown-toggle"
+                                            data-bs-toggle="dropdown">
+                                        Gravid- & efterfødsel
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li class="dropdown-item"> Treatment 1</li>
+                                        <li class="dropdown-item"> Treatment 2</li>
+                                        <li class="dropdown-item"> Treatment 3</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="dropdown">
+                                    <button type="button" class="btn btn-primary dropdown-toggle"
+                                            data-bs-toggle="dropdown">
+                                        Massage
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li class="dropdown-item"> Treatment 1</li>
+                                        <li class="dropdown-item"> Treatment 2</li>
+                                        <li class="dropdown-item"> Treatment 3</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="dropdown">
+                                    <button type="button" class="btn btn-primary dropdown-toggle"
+                                            data-bs-toggle="dropdown">
+                                        Lungefysioterapi
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li class="dropdown-item"> Treatment 1</li>
+                                        <li class="dropdown-item"> Treatment 2</li>
+                                        <li class="dropdown-item"> Treatment 3</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- Choose treatment -->
                 <div id="step3Content" style="display: none;">
-                    Step 3: Vælg Treatment
-                    <!-- treatment input -->
+                    Step 3: Vælg Employee
+                    <!-- Employee input -->
                 </div>
 
                 <!-- Choose day of appointment -->
@@ -73,7 +131,8 @@
                 <div id="step6Content" style="display: none;">
                     Step 6: Bekræftelse
                     Du kan nu lukke dette vindue :)
-                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onclick="resetBooking()">Vend
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onclick="resetBooking()">
+                        Vend
                         Tilbage
                     </button>
                 </div>
