@@ -1,4 +1,20 @@
-
+h1{
+    text-transform: uppercase;
+    color: #6564ab;
+    font-size: 65px;
+}
+h2{
+    color: #6564ab;
+    font-size: 45px;
+}
+h3{
+    color: #6564ab;
+    text-transform: uppercase;
+    border-bottom: 3px solid #c8c8e1;
+}
+h6{
+    padding-top:2px;
+}
 .headerContainer{
     padding: 15px;
 }
@@ -23,8 +39,17 @@
 }
 .bannerContainer {
     height:500px;
+    background-image: url("project/static/img/banner_1.jpg");
     background-color: lightgray;
 }
 .navbar {
     justify-content: flex-end;
+}
+.bannerContainer {
+    height:500px;
+    background-image: url("project/static/img/banner_1.jpg");
+    background-color: lightgray;
+}
+#mainContentContainer{
+    padding: 20px 50px 20px 50px;
 }
