@@ -12,6 +12,9 @@
     color: #6564ab;
     font-size: 45px;
 }
+.hvemErViContainer{
+    border: 2px dotted #6564ab;
+}
 .subtextForProfile{
     font-size: 20px;
 }
