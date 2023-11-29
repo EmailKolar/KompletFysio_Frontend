@@ -26,6 +26,15 @@ h6{
     background-color: #6564ab;
     padding:11px 10px 0px 10px;
 }
+.overHeadLink{
+    color: white;
+    border-bottom: 1px solid #6564ab;
+    text-decoration: none;
+}
+
+.overHeadLink:hover{
+    border-bottom: 1px solid white;
+}
 .overHeaderContainer .contactInfo {
     float:right;
     margin-left: 30px;
@@ -74,4 +83,14 @@ h6{
 }
 #mainContentContainer{
     padding: 20px 50px 20px 50px;
+}
+.standardLink {
+    color: #6564ab;
+    border-bottom: 1px solid #6564ab;
+    text-decoration: none;
+}
+
+.standardLink:hover{
+    color: #64ab65;
+    border-bottom: 1px solid #6564ab;
 }
