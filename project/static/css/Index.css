@@ -1,4 +1,7 @@
-
+*{
+    padding: 0;
+    margin:0;
+}
 .headerContainer{
     padding: 15px;
 }
@@ -12,6 +15,9 @@
     display:flex;
     color:white;
     font-size:14px
+}
+.contactInfo{
+    text-align: left;
 }
 .linkContainer {
     display:flex;
