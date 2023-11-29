@@ -94,3 +94,23 @@ h6{
     color: #64ab65;
     border-bottom: 1px solid #6564ab;
 }
+.footerContainer{
+    background-color: #6564ab;
+}
+.footerBoks{
+    border: 2px dotted #e9e9f3;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.footerText{
+    color: white;
+}
+.footerRowStyling{
+    padding-top: 12px;
+    background-color: #6564ab;
+}
+.footerRowStyling:nth-child(odd){
+    background-color: #7575b4;
+}
