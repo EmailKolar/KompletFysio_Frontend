@@ -26,13 +26,13 @@ h6{
     background-color: #6564ab;
     padding:11px 10px 0px 10px;
 }
-.tlfLink{
+.overHeadLink{
     color: white;
     border-bottom: 1px solid #6564ab;
     text-decoration: none;
 }
 
-.tlfLink:hover{
+.overHeadLink:hover{
     border-bottom: 1px solid white;
 }
 .overHeaderContainer .contactInfo {
