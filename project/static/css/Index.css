@@ -85,11 +85,12 @@ h6{
     padding: 20px 50px 20px 50px;
 }
 .standardLink {
-    color: #64ab65;
+    color: #6564ab;
     border-bottom: 1px solid #6564ab;
     text-decoration: none;
 }
 
 .standardLink:hover{
-    border-bottom: 1px solid white;
+    color: #64ab65;
+    border-bottom: 1px solid #6564ab;
 }
