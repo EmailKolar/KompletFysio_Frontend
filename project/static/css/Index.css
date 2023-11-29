@@ -26,6 +26,15 @@ h6{
     background-color: #6564ab;
     padding:11px 10px 0px 10px;
 }
+.tlfLink{
+    color: white;
+    border-bottom: 1px solid #6564ab;
+    text-decoration: none;
+}
+
+.tlfLink:hover{
+    border-bottom: 1px solid white;
+}
 .overHeaderContainer .contactInfo {
     float:right;
     margin-left: 30px;
