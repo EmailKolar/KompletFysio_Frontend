@@ -1,0 +1,31 @@
+.position-relative {
+    position: relative;
+}
+
+.overlay-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+    text-align: center;
+}
+
+.banner-image-container {
+    width: 100%;
+    height: 300px;
+}
+
+.banner-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.rounded-image {
+    border-radius: 10px;
+    margin: 10px auto;
+    display: block;
+}
+.content-col {
+    padding: 10px; /* Add padding to the content column to prevent overlap */
+}
