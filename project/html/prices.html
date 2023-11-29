@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>info page</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+        crossorigin="anonymous"/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+  <script src="javascript/Index.js"></script>
+  <link rel="stylesheet" href="../static/css/Index.css">
+
+    <style>
+      /* Add your custom styles here */
+    .position-relative {
+      position: relative;
+    }
+
+    .overlay-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: #fff;
+      text-align: center;
+    }
+
+      .image-container {
+        width: 100%;
+        height: 300px; /* Adjust the height as needed */
+      }
+
+      .image-container img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* Crop the image while maintaining aspect ratio */
+      }
+      .custom-card {
+        border: none;
+        background-color: #f8f9fa; /* Grey shading */
+      }
+
+      .table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 10px; /* Adjust margin as needed */
+        background-color: #f8f9fa; /* Grey shading */
+
+      }
+
+      .table td, .table th {
+        border-bottom: 1px solid #dee2e6;
+        padding: 8px;
+
+        background-color: #f8f9fa;
+      }
+      .align-left {
+        text-align: left;
+
+      }
+
+      .align-right {
+        text-align: right;
+      }
+    </style>
+
+</head>
+<body>
+<div class="overHeaderContainer">
+  <div class="row linkContainer">
+    <div class="col-sm-12 col-md-auto">
+      <p class="contactInfo">
+        <i class="bi bi-telephone pe-2"></i>
+        Tlf.: (+45) 30 48 07 85
+      </p>
+    </div>
+    <div class="col-sm-12 col-md-auto">
+      <p class="contactInfo">
+        <i class="bi bi-house-door-fill pe-2"></i>
+        Sindshvilevel 15, 2000 Frederiksberg
+      </p>
+    </div>
+    <div class="col-sm-12 col-md-auto">
+      <p class="contactInfo">
+        <i class="bi bi-telegram pe-2"></i>
+        kontakt@kompletfysio.fk
+      </p>
+    </div>
+  </div>
+</div>
+
+
+<div class="headerContainer">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-1">
+        <div class="logoContainer">
+          <img src="../static/img/kompletFysioLogo.png" style="width: 150px; height: auto;" alt="Logo" />
+        </div>
+      </div>
+      <div class="col">
+        <nav class="navbar navbar-expand-lg">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                  data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+                  aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Om os</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Vi tilbyder</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Træning</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Øvrige tilbud</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Priser</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Kontakt</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Bliv klog på din skade</a>
+              </li>
+              <!--<li class="nav-item">
+                  <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+              </li>-->
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid">
+
+  <div class="row">
+    <div class="col">
+      <div class="position-relative image-container">
+        <img src="../static/img/trainingImageFysio.jpg" class="img-fluid" alt="Your Image">
+        <div class="overlay-text">
+          <h1>Priser</h1>
+          <p>KompletFysio er en klinik udenfor ydernummer – derfor behøver du ikke have en henvisning fra din læge.
+            Det er samme pris for alle og ingen ekstragebyrer på fx tape, k-laser mm. under din behandling.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col text-center mx-xl-5">
+      <br>
+      <h1>Behandlingspriser</h1>
+      <p>
+        <br>
+        Hos KompletFysio behandler vi dig uden og med henvisning fra din læge – samme pris, samme tilskud fra
+        Sygeforsikring Danmark, ingen ekstragebyrer! <br> <br>
+        Hos KompletFysio behøver du ikke først at skaffe en henvisning fra din læge. Det er samme pris for alle,
+        og alt er inkluderet i prisen. Der er altså ingen ekstragebyrer på fx tape, k-laser mm. til din behandling.
+        Der er tilskud fra Sygeforsikring Danmark, og mange sundhedsforsikringer dækker også behandling helt eller
+        delvist hos os. <br> <br>
+        Hos os køber du én “komplet” pakke, hvor alt du skal bruge er med, og hvor der er god tid til
+        dig og til at undersøge dig grundigt, lægge en plan og starte behandling. <br>
+        Mange steder er det praksis at have én pris for konsultationen, og så at have tillægsydelser ved behov for
+        akupunktur, laser, kinesiotape mv. Desuden er første konsultion ofte kun på 30 min, hvor den hos os er på 55 min.
+        <br> <br>
+        Vi vil gerne tilbyde en samlet løsning, hvor man ikke skal bekymre sig om prisen på den behandling
+        fysioterapeuten foreslår. Det vil sige, at du hos os betaler for din konsultation, og så leverer vi en komplet
+        behandling, herunder alt hvad der måtte blive relevant. Der er altså ingen ekstra udgifter hos os hvis
+        fysioterapeuten vurderer, at du har brug for behandling med k-laser, eller hvis du har glemt et lagen at
+        ligge på, eller hvis du skal have akupunktur.</p>
+    </div>
+  </div>
+
+
+    <div class="row">
+      <div class="col-md-6 text-center">
+        <h3>Fysio- & sportsfysioterapi</h3>
+        <div class="card custom-card">
+          <div class="card-body">
+            <table class="table">
+              <tr>
+                <td class="align-left">Førstegangsbehandling (60 min)</td>
+                <td class="align-right">650,-</td>
+              </tr>
+              <tr>
+                <td class="align-left">Gravidbehandling (60 min)</td>
+                <td class="align-right">620,-</td>
+              </tr>
+              <tr>
+                <td class="align-left">Lang behandling (60 min)</td>
+                <td class="align-right">620,-</td>
+              </tr>
+              <tr>
+                <td class="align-left">Normal behandling (45 min)</td>
+                <td class="align-right">465,-</td>
+              </tr>
+              <tr>
+                <td class="align-left">Normal behandling (30 min)</td>
+                <td class="align-right">310,-</td>
+              </tr>
+              <tr>
+                <td class="align-left">NADA øreakupunktur</td>
+                <td class="align-right">75,-</td>
+              </tr>
+              <tr>
+                <td class="align-left">Udeblivelse</td>
+                <td class="align-right">Almindelig pris</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+        <p><strong>Priser er inkl. alt: tape, akupunktur, K-laser mm.</strong></p>
+      </div>
+      <div class="col-md-6 text-center">
+      <h3>Gravid & efterfødsel</h3>
+      <div class="card custom-card">
+        <div class="card-body">
+          <table class="table">
+
+            <tr>
+              <td class="align-left">Gravidbehandling (60 min)</td>
+              <td class="align-right">620,-</td>
+            </tr>
+            <tr>
+              <td class="align-left">Kort behandling (30 min)</td>
+              <td class="align-right">310,-</td>
+            </tr>
+            <tr>
+              <td class="align-left">Gravidhold</td>
+              <td class="align-right">160,-</td>
+            </tr>
+            <tr>
+              <td class="align-left">Efterfødselshold <br> <span style="font-style: italic;font-size: smaller">1 gang om ugen i 8 uger</span></td>
+              <td class="align-right">1365,-</td>
+            </tr>
+            <tr>
+              <td class="align-left">Udeblivelse</td>
+              <td class="align-right">Almindelig pris</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <br>
+  <br>
+
+  <div class="row">
+    <div class="col-md-6 text-center">
+      <h3>Massage</h3>
+      <div class="card custom-card">
+        <div class="card-body">
+          <table class="table">
+            <tr>
+              <td class="align-left">Massage (90 min)</td>
+              <td class="align-right">930,-</td>
+            </tr>
+            <tr>
+              <td class="align-left">Massage (60 min)</td>
+              <td class="align-right">620,-</td>
+            </tr>
+            <tr>
+              <td class="align-left">Massage (45 min)</td>
+              <td class="align-right">465,-</td>
+            </tr>
+            <tr>
+              <td class="align-left">Massage (30 min)</td>
+              <td class="align-right">310,-</td>
+            </tr>
+            <tr>
+              <td class="align-left">Udeblivelse</td>
+              <td class="align-right">Almindelig pris</td>
+            </tr>
+            <tr>
+              <td class="align-left">Gavekort</td>
+              <td class="align-right">Samme pris, som ovenstående</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 text-center">
+      <h3>Lungefysioterapi</h3>
+      <div class="card custom-card">
+        <div class="card-body">
+          <table class="table">
+            <tr>
+              <td class="align-left">Første lunge konsultation (60 min)</td>
+              <td class="align-right">650,-</td>
+            </tr>
+            <tr>
+              <td class="align-left">Normal behandling (45 min)</td>
+              <td class="align-right">465,-</td>
+            </tr>
+            <tr>
+              <td class="align-left">Udeblivelse</td>
+              <td class="align-right">Almindelig pris</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+</body>
+</html>
