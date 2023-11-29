@@ -29,6 +29,9 @@ h6{
     color:white;
     font-size:14px
 }
+.logoContainer{
+
+}
 .linkContainer {
     display:flex;
     height: fit-content;
@@ -36,6 +39,18 @@ h6{
 }
 .navbar {
     margin-top: 100px;
+}
+.bookSection{
+    background-color: #64ab65;
+    color:white;
+}
+.bookSection:hover{
+    background-color: #4d8f4e;
+}
+.bookButton{
+    text-transform: uppercase;
+    font-size: 25px;
+    margin: 0 auto;
 }
 .bannerContainer {
     height:500px;
