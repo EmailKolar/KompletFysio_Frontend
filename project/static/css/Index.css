@@ -16,8 +16,8 @@
     color:white;
     font-size:14px
 }
-.contactInfo{
-    text-align: left;
+.overHeaderEmployee {
+    color:white;
 }
 .linkContainer {
     display:flex;
