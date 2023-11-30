@@ -89,44 +89,44 @@ async function nextStep() {
 }
 
 function showCapableEmployees() {
-    let employeeContainer = document.getElementById("employeesContainer");
-    employeeContainer.innerHTML = '';
+    let employeeContainer = document.getElementById("employeesContainer")
+    employeeContainer.innerHTML = ''
 
     let wildCardEmployeeDiv = document.createElement("div")
     wildCardEmployeeDiv.textContent = "Vilkårlig Behandler"
-    wildCardEmployeeDiv.classList.add("btn", "btn-secondary", "employeeBox");
+    wildCardEmployeeDiv.classList.add("btn", "btn-secondary", "employeeBox")
     wildCardEmployeeDiv.style.marginBottom = "25px"
     wildCardEmployeeDiv.onclick = function () {
         //customer can select the wilcardEmployee, and the selectedEmployeeId will become <0 Anne wanted that feature :)
         wildCardEmployeeDiv.classList.remove("btn-secondary")
         wildCardEmployeeDiv.classList.add("btn-primary")
-        selectedEmployeeId = -1;
+        selectedEmployeeId = -1
         console.log("selected EmployeeId: " + selectedEmployeeId);
         enableContinueButton();
     };
     employeeContainer.appendChild(wildCardEmployeeDiv)
 
     for (let i = 0; i < employeeList.length; i++) {
-        let employeeDiv = document.createElement("div");
-        employeeDiv.classList.add("btn", "btn-secondary");
+        let employeeDiv = document.createElement("div")
+        employeeDiv.classList.add("btn", "btn-secondary")
         employeeDiv.classList.add("employeeBox")
 
         //set the name of the employee
-        let employeeName = employeeList[i].firstName + " " + employeeList[i].lastName;
-        employeeDiv.textContent = employeeName;
+        let employeeName = employeeList[i].firstName + " " + employeeList[i].lastName
+        employeeDiv.textContent = employeeName
 
         // make an onclick for each div/employee
         employeeDiv.onclick = function () {
 
             // Add btn-primary class to the selected employee (btn)
-            employeeDiv.classList.remove("btn-secondary");
-            employeeDiv.classList.add("btn-primary");
+            employeeDiv.classList.remove("btn-secondary")
+            employeeDiv.classList.add("btn-primary")
 
-            selectedEmployeeId = employeeList[i].employeeId;
-            console.log("selected EmployeeId: " + selectedEmployeeId);
-            enableContinueButton();
+            selectedEmployeeId = employeeList[i].employeeId
+            console.log("selected EmployeeId: " + selectedEmployeeId)
+            enableContinueButton()
         };
-        employeeContainer.appendChild(employeeDiv);
+        employeeContainer.appendChild(employeeDiv)
     }
 }
 
@@ -137,10 +137,10 @@ function inputTreatmentLists() {
     let pregnantIdRange = [10, 11]
     let lungIdRange = [12, 13]
 
-    massageList = allTreatments.filter(treatment => massageIdRange.includes(treatment.treatmentId));
-    fysioList = allTreatments.filter(treatment => sportsFysioIdRange.includes(treatment.treatmentId));
-    pregnantList = allTreatments.filter(treatment => pregnantIdRange.includes(treatment.treatmentId));
-    lungList = allTreatments.filter(treatment => lungIdRange.includes(treatment.treatmentId));
+    massageList = allTreatments.filter(treatment => massageIdRange.includes(treatment.treatmentId))
+    fysioList = allTreatments.filter(treatment => sportsFysioIdRange.includes(treatment.treatmentId))
+    pregnantList = allTreatments.filter(treatment => pregnantIdRange.includes(treatment.treatmentId))
+    lungList = allTreatments.filter(treatment => lungIdRange.includes(treatment.treatmentId))
 
     // console.log(massageList)
     // console.log(fysioList)
@@ -180,23 +180,23 @@ function selectTreatmentType(choice) {
             break;
     }
     //add and remove styling to the buttons
-    treatmentTypeButton.classList.remove("btn-primary");
-    treatmentTypeButton.classList.add("btn-secondary");
-    treatmentButton.classList.remove("btn-secondary");
-    treatmentButton.classList.add("btn-primary");
+    treatmentTypeButton.classList.remove("btn-primary")
+    treatmentTypeButton.classList.add("btn-secondary")
+    treatmentButton.classList.remove("btn-secondary")
+    treatmentButton.classList.add("btn-primary")
 
     //Add the list items to the dropDown
     selectedList.forEach(treatment => {
         let listTreatment = document.createElement("li")
         listTreatment.className = "dropdown-item"
         listTreatment.textContent = treatment.treatmentName
-        listTreatment.style.textAlign = "center";
+        listTreatment.style.textAlign = "center"
         listTreatment.onclick = () => {
             console.log("treatment:", treatment)
             treatmentButton.textContent = treatment.treatmentName
             selectedTreatmentId = treatment.treatmentId
             console.log("Selected treatment ID:", selectedTreatmentId)
-            treatmentButton.classList.add("btn-secondary");
+            treatmentButton.classList.add("btn-secondary")
             enableContinueButton()
         };
         treatmentTypeDropdown.appendChild(listTreatment)
@@ -213,10 +213,10 @@ function resetBooking() {
     //reset the buttons
     cancelBtn.style.display = 'block'
     continueBtn.style.display = 'block'
-    treatmentTypeButton.textContent = "Vælg Behandlings Type";
+    treatmentTypeButton.textContent = "Vælg Behandlings Type"
     treatmentTypeButton.classList.remove("btn-secondary")
     treatmentTypeButton.classList.add("btn-primary")
-    treatmentTypeDropdown.innerHTML = "";
+    treatmentTypeDropdown.innerHTML = ""
     treatmentButton.textContent = "Vælg Behandling"
 
     // reset the progressbar to 0
@@ -226,13 +226,13 @@ function resetBooking() {
 
 function disableContinueButton() {
     continueBtn.classList.remove("btn-primary")
-    continueBtn.classList.add("btn-secondary");
+    continueBtn.classList.add("btn-secondary")
     continueBtn.disabled = true;
 }
 
 function enableContinueButton() {
     continueBtn.classList.remove("btn-secondary")
-    continueBtn.classList.add("btn-primary");
+    continueBtn.classList.add("btn-primary")
     continueBtn.disabled = false;
 }
 
