@@ -6,6 +6,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="../static/css/BookAppointment.css">
 
 </head>
 <body>
@@ -15,10 +16,10 @@
     Book Tid Online
 </button>
 
-<!-- Modal -->
+<!-- booking modal -->
 <div class="modal fade" id="newAppointmentModal" data-bs-backdrop="static" data-bs-keyboard="false"
      aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-fullscreen-sm-down">
 
         <div class="modal-content">
 
@@ -29,7 +30,7 @@
                 <!--<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
 
             </div>
-            <!--progress bar-->
+            <!--progress bar underneath-->
             <div class="progress mt-3">
                 <div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0"
                      aria-valuemax="100"></div>
@@ -38,8 +39,11 @@
             <div class="modal-body">
 
                 <div id="step0Content">
-                    Step 0: Tak fordi du vil booke en tid hos os
-                    Venligst følg disse trin for at færdigører din bookning
+                    <div style="text-align: center">
+                        <p>Tak fordi du vil booke en tid hos os!</p>
+                        <p>Følg venligst denne formular</p>
+                    </div>
+
                 </div>
 
                 <!-- Log In Customer -->
@@ -49,19 +53,58 @@
 
                 <!-- Choose Employee -->
                 <div id="step2Content" style="display: none;">
-                    Step 2: Vælg Employee
+                    <div class="container">
+
+                        <div class="col">
+                            <div class="dropdown">
+                                <button type="button" class="btn btn-primary dropdown-toggle dropdownButton"
+                                        data-bs-toggle="dropdown" id="treatmentTypeButton">
+                                    Vælg Behandlings Type
+                                </button>
+                                <ul class="dropdown-menu" style="width: 100%" >
+                                    <li class="dropdown-item" style="text-align: center" onclick="selectTreatmentType(1)">Fysio- & sportsfysioterapi</li>
+                                    <li class="dropdown-item" style="text-align: center" onclick="selectTreatmentType(2)">Massage</li>
+                                    <li class="dropdown-item" style="text-align: center" onclick="selectTreatmentType(3)">Gravid- & efterfødsel</li>
+                                    <li class="dropdown-item" style="text-align: center" onclick="selectTreatmentType(4)">Lungefysioterapi</li>
+
+                                </ul>
+                            </div>
+
+                            <div class="dropdown">
+                                <button type="button" class="btn btn-secondary dropdown-toggle dropdownButton"
+                                        data-bs-toggle="dropdown" id="treatmentButton">
+                                    Vælg Behandling
+                                </button>
+                                <ul class="dropdown-menu" id="treatmentSelectionDropDown" style="width: 100%">
+                                    <!--list object should depend on chosen Behandling-->
+                                    <!--this should be done in JS-->
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- Choose treatment -->
                 <div id="step3Content" style="display: none;">
-                    Step 3: Vælg Treatment
-                    <!-- treatment input -->
+<!--                    Step 3: Vælg Employee-->
+                    <div class="container" id="employeesContainer">
+<!--                        <div class="btn" id="wildCardEmployeeDiv">-->
+<!--                            Vilkårlig Behandler-->
+<!--                        </div>-->
+                    </div>
                 </div>
 
                 <!-- Choose day of appointment -->
                 <div id="step4Content" style="display: none;">
                     Step 3: Vælg dag
-                    <input type="date">
+<!--                    <input type="date">-->
+                    <div class="container" id="dateInputContainer">
+                        <table>
+
+
+
+                        </table>
+                    </div>
                 </div>
 
                 <!-- Choose time of day -->
@@ -73,7 +116,8 @@
                 <div id="step6Content" style="display: none;">
                     Step 6: Bekræftelse
                     Du kan nu lukke dette vindue :)
-                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onclick="resetBooking()">Vend
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onclick="resetBooking()">
+                        Vend
                         Tilbage
                     </button>
                 </div>
