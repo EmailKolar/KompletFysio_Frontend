@@ -9,6 +9,7 @@
         crossorigin="anonymous"/>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
   <script src="javascript/Index.js"></script>
   <link rel="stylesheet" href="../static/css/Index.css">
   <link rel="stylesheet" href="../static/css/massageInfo.css">
@@ -47,7 +48,9 @@
     <div class="row">
       <div class="col-1">
         <div class="logoContainer">
-          <img src="../static/img/kompletFysioLogo.png" style="width: 150px; height: auto;" alt="Logo" />
+          <a  href="index.html">
+            <img src="../static/img/kompletFysioLogo.png" style="width: 150px; height: auto;" alt="Logo"/>
+          </a>
         </div>
       </div>
       <div class="col">
@@ -64,10 +67,30 @@
 
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Om os</a>
+                <div class="dropdown">
+                  <button type="button" class="nav-link" data-bs-toggle="dropdown">
+                    <i class="bi bi-caret-down"></i> Om os
+                  </button>
+                  <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="html/about.html">Hvem er vi?</a></li>
+                    <li><a class="dropdown-item" href="#">Om henvisninger, forsikringer og tilskud
+                      fra sygesikringen</a></li>
+                    <li><a class="dropdown-item" href="#">Privatlivspolitik</a></li>
+                  </ul>
+                </div>
               </li>
+
               <li class="nav-item">
-                <a class="nav-link" href="#">Vi tilbyder</a>
+                <div class="dropdown">
+                  <button type="button" class="nav-link" data-bs-toggle="dropdown">
+                    <i class="bi bi-caret-down"></i> Vi tilbyder
+                  </button>
+                  <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">Specialer</a></li>
+                    <li><a class="dropdown-item" href="#">Massage</a></li>
+                    <li><a class="dropdown-item" href="#">Specifikke problemstillinger</a></li>
+                  </ul>
+                </div>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#">Træning</a>
@@ -112,8 +135,7 @@
 
     <div class="col-xl-6 text-center order-sm-2">
       <div class="position-relative">
-<!--        todo help download the right picture-->
-        <img src="../static/img/massageFysionPic.webp" class="img-fluid rounded-image" alt="Your Image">
+        <img src="../static/img/knæFys.webp" class="img-fluid rounded-image" alt="Your Image">
       </div>
     </div>
 
@@ -149,8 +171,7 @@
     </div>
     <div class="col-xl-6 text-center order-sm-2">
       <div class="position-relative">
-        <!--        todo help download the right picture-->
-        <img src="../static/img/sportmassageFysio.webp" class="img-fluid rounded-image" alt="Your Image">
+        <img src="../static/img/fysioterapi2.JPG" class="img-fluid rounded-image" alt="Your Image">
       </div>
     </div>
 
