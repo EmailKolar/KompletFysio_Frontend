@@ -111,35 +111,26 @@ function date() {
     dateContainer.appendChild(dateInput)
 }
 
-function updateTimeSlots() {
-    // fetchEmployeeAvailableTimeSlots()
-    // let timestamps = []
-    for (let i = 0; i < employeeAvailableWorkTimes.length; i++) {
-        let start1 = employeeAvailableWorkTimes[i].startTime
-        let end1 = employeeAvailableWorkTimes[i].endTime
-        console.log()
-        console.log(start1)
-        console.log(end1)
-        console.log()
-    }
-}
 
 //revervations yoink:
-function createTimeslots(availableWorkTimes) {
+function createTimeslots() {
     const timeslots = document.getElementById("timeslots")
     timeslots.innerHTML = ""
-    availableWorkTimes.forEach(time => {
-        console.log("I'm running")
+
+    for (let i = 0; i < employeeAvailableWorkTimes.length; i++) {
+
         const row = document.createElement('tr')
+            const start = document.createElement('td');
+            start.textContent = employeeAvailableWorkTimes[i];
 
-        const start = document.createElement('td');
-        start.textContent = time.startTime;
-        row.appendChild(start);
-
-        timeslots.appendChild(row);
-    })
+            start.onclick = function () {
+                console.log("clicked on timeslot: " + start.textContent)
+                //selected timeslot = this timeslot
+            }
+            row.appendChild(start);
+            timeslots.appendChild(row)
+    }
 }
-
 
 
 function showCapableEmployees() {
@@ -336,7 +327,7 @@ async function fetchCapableEmployees() {
 }
 
 function fetchEmployeeAvailableTimeSlots() {
-    fetch(fetchEmployeeTimeSlotsURL + selectedEmployeeId + "/" + selectedDate)
+    fetch(fetchEmployeeTimeSlotsURL + selectedEmployeeId + "/" + selectedDate + "/" + selectedDuration)
         .then(result => {
             if (result >= 400) {
                 throw new Error();
@@ -345,7 +336,7 @@ function fetchEmployeeAvailableTimeSlots() {
         }).then(body => {
         employeeAvailableWorkTimes = body;
         console.log(employeeAvailableWorkTimes)
-        createTimeslots(employeeAvailableWorkTimes)
+        createTimeslots()
     })
 }
 
