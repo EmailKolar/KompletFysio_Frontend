@@ -16,6 +16,7 @@ let lungList = []
 
 //step 2 - choose treatment
 let selectedTreatmentId;
+let selectedDuration;
 let treatmentTypeButton = document.getElementById("treatmentTypeButton")
 let treatmentButton = document.getElementById("treatmentButton")
 let treatmentTypeDropdown = document.getElementById("treatmentSelectionDropDown")
@@ -23,12 +24,15 @@ let treatmentTypeDropdown = document.getElementById("treatmentSelectionDropDown"
 //step 3 - choose employee
 let employeeList = []
 let selectedEmployeeId;
+let selectedDate;
 
+//step 4 - chose date/time
+let employeeAvailableWorkTimes = []
 
 //Fetches
 const fetchAllTreatmentsURL = "http://localhost:8080/allTreatments"
 const fetchEmployeesWithTreatmentIdURL = "http://localhost:8080/getEmployeeByTreatmentId/"
-
+const fetchEmployeeTimeSlotsURL = "http://localhost:8080/getEmployeeHoursById/"
 
 async function nextStep() {
 
@@ -60,8 +64,10 @@ async function nextStep() {
             //logic for choose employee (dropdown with applicable employees based on chosen treatment, date and time)
             break
         case 4:
-            console.log("choose date")
             //logic for choose date (based on chosen treatment and which employees are applicable)
+            console.log("choose date")
+            date()
+
             break
         case 5:
             console.log("choose time")
@@ -88,48 +94,104 @@ async function nextStep() {
 
 }
 
+function date() {
+    let dateContainer = document.getElementById("dateInputContainer")
+    let dateInput = document.createElement("input")
+    dateInput.type = "date"
+
+    dateInput.addEventListener("change", function () {
+        selectedDate = dateInput.value
+        console.log(dateInput.value)
+
+        fetchEmployeeAvailableTimeSlots()
+
+    });
+    // console.log(dateInput.value)
+
+    dateContainer.appendChild(dateInput)
+}
+
+
+//revervations yoink:
+function createTimeslots() {
+    const timeslots = document.getElementById("timeslots")
+    timeslots.innerHTML = ""
+
+    for (let i = 0; i < employeeAvailableWorkTimes.length; i++) {
+
+        const row = document.createElement('tr')
+            const start = document.createElement('td');
+            start.textContent = employeeAvailableWorkTimes[i];
+
+            start.onclick = function () {
+                console.log("clicked on timeslot: " + start.textContent)
+                //selected timeslot = this timeslot
+            }
+            row.appendChild(start);
+            timeslots.appendChild(row)
+    }
+}
+
+
 function showCapableEmployees() {
-    let employeeContainer = document.getElementById("employeesContainer");
-    employeeContainer.innerHTML = '';
+    let employeeContainer = document.getElementById("employeesContainer")
+    employeeContainer.innerHTML = ''
 
     let wildCardEmployeeDiv = document.createElement("div")
     wildCardEmployeeDiv.textContent = "Vilkårlig Behandler"
-    wildCardEmployeeDiv.classList.add("btn", "btn-secondary", "employeeBox");
+    wildCardEmployeeDiv.classList.add("btn", "btn-secondary", "employeeBox")
     wildCardEmployeeDiv.style.marginBottom = "25px"
     wildCardEmployeeDiv.onclick = function () {
         //customer can select the wilcardEmployee, and the selectedEmployeeId will become <0 Anne wanted that feature :)
-        wildCardEmployeeDiv.classList.remove("btn-secondary")
-        wildCardEmployeeDiv.classList.add("btn-primary")
-        selectedEmployeeId = -1;
+        // wildCardEmployeeDiv.classList.remove("btn-secondary")
+        // wildCardEmployeeDiv.classList.add("btn-primary")
+        removeBlueColorOnButtons()
+        wildCardEmployeeDiv.classList.remove("btn-secondary");
+        wildCardEmployeeDiv.classList.add("btn-primary");
+
+        selectedEmployeeId = -1
         console.log("selected EmployeeId: " + selectedEmployeeId);
         enableContinueButton();
     };
     employeeContainer.appendChild(wildCardEmployeeDiv)
 
     for (let i = 0; i < employeeList.length; i++) {
-        let employeeDiv = document.createElement("div");
-        employeeDiv.classList.add("btn", "btn-secondary");
+        let employeeDiv = document.createElement("div")
+        employeeDiv.classList.add("btn", "btn-secondary")
         employeeDiv.classList.add("employeeBox")
 
         //set the name of the employee
-        let employeeName = employeeList[i].firstName + " " + employeeList[i].lastName;
-        employeeDiv.textContent = employeeName;
+        let employeeName = employeeList[i].firstName + " " + employeeList[i].lastName
+        employeeDiv.textContent = employeeName
 
         // make an onclick for each div/employee
         employeeDiv.onclick = function () {
 
             // Add btn-primary class to the selected employee (btn)
+            // employeeDiv.classList.remove("btn-secondary")
+            // employeeDiv.classList.add("btn-primary")
+
+            removeBlueColorOnButtons()
+            // Add btn-primary class to the selected employee (btn)
             employeeDiv.classList.remove("btn-secondary");
             employeeDiv.classList.add("btn-primary");
 
-            selectedEmployeeId = employeeList[i].employeeId;
-            console.log("selected EmployeeId: " + selectedEmployeeId);
-            enableContinueButton();
+            selectedEmployeeId = employeeList[i].employeeId
+            console.log("selected EmployeeId: " + selectedEmployeeId)
+            enableContinueButton()
         };
-        employeeContainer.appendChild(employeeDiv);
+        employeeContainer.appendChild(employeeDiv)
     }
 }
 
+function removeBlueColorOnButtons() {
+    let allButtons = document.querySelectorAll(".employeeBox");
+    console.log(allButtons)
+    allButtons.forEach(button => {
+        button.classList.remove("btn-primary");
+        button.classList.add("btn-secondary");
+    });
+}
 
 function inputTreatmentLists() {
     let massageIdRange = [1, 2, 3, 4]
@@ -137,10 +199,10 @@ function inputTreatmentLists() {
     let pregnantIdRange = [10, 11]
     let lungIdRange = [12, 13]
 
-    massageList = allTreatments.filter(treatment => massageIdRange.includes(treatment.treatmentId));
-    fysioList = allTreatments.filter(treatment => sportsFysioIdRange.includes(treatment.treatmentId));
-    pregnantList = allTreatments.filter(treatment => pregnantIdRange.includes(treatment.treatmentId));
-    lungList = allTreatments.filter(treatment => lungIdRange.includes(treatment.treatmentId));
+    massageList = allTreatments.filter(treatment => massageIdRange.includes(treatment.treatmentId))
+    fysioList = allTreatments.filter(treatment => sportsFysioIdRange.includes(treatment.treatmentId))
+    pregnantList = allTreatments.filter(treatment => pregnantIdRange.includes(treatment.treatmentId))
+    lungList = allTreatments.filter(treatment => lungIdRange.includes(treatment.treatmentId))
 
     // console.log(massageList)
     // console.log(fysioList)
@@ -154,7 +216,6 @@ function selectTreatmentType(choice) {
     disableContinueButton()
 
     treatmentTypeDropdown.innerHTML = ""
-
     // treatmentTypeButton.textContent = "Vælg Behandlings Type"
 
     treatmentButton.textContent = "Vælg Behandling"
@@ -180,23 +241,24 @@ function selectTreatmentType(choice) {
             break;
     }
     //add and remove styling to the buttons
-    treatmentTypeButton.classList.remove("btn-primary");
-    treatmentTypeButton.classList.add("btn-secondary");
-    treatmentButton.classList.remove("btn-secondary");
-    treatmentButton.classList.add("btn-primary");
+    treatmentTypeButton.classList.remove("btn-primary")
+    treatmentTypeButton.classList.add("btn-secondary")
+    treatmentButton.classList.remove("btn-secondary")
+    treatmentButton.classList.add("btn-primary")
 
     //Add the list items to the dropDown
     selectedList.forEach(treatment => {
         let listTreatment = document.createElement("li")
         listTreatment.className = "dropdown-item"
         listTreatment.textContent = treatment.treatmentName
-        listTreatment.style.textAlign = "center";
+        listTreatment.style.textAlign = "center"
         listTreatment.onclick = () => {
             console.log("treatment:", treatment)
             treatmentButton.textContent = treatment.treatmentName
             selectedTreatmentId = treatment.treatmentId
-            console.log("Selected treatment ID:", selectedTreatmentId)
-            treatmentButton.classList.add("btn-secondary");
+            selectedDuration = treatment.duration
+            console.log("Selected treatment ID:", selectedTreatmentId + ", selected duration: " + selectedDuration)
+            treatmentButton.classList.add("btn-secondary")
             enableContinueButton()
         };
         treatmentTypeDropdown.appendChild(listTreatment)
@@ -213,10 +275,10 @@ function resetBooking() {
     //reset the buttons
     cancelBtn.style.display = 'block'
     continueBtn.style.display = 'block'
-    treatmentTypeButton.textContent = "Vælg Behandlings Type";
+    treatmentTypeButton.textContent = "Vælg Behandlings Type"
     treatmentTypeButton.classList.remove("btn-secondary")
     treatmentTypeButton.classList.add("btn-primary")
-    treatmentTypeDropdown.innerHTML = "";
+    treatmentTypeDropdown.innerHTML = ""
     treatmentButton.textContent = "Vælg Behandling"
 
     // reset the progressbar to 0
@@ -226,13 +288,13 @@ function resetBooking() {
 
 function disableContinueButton() {
     continueBtn.classList.remove("btn-primary")
-    continueBtn.classList.add("btn-secondary");
+    continueBtn.classList.add("btn-secondary")
     continueBtn.disabled = true;
 }
 
 function enableContinueButton() {
     continueBtn.classList.remove("btn-secondary")
-    continueBtn.classList.add("btn-primary");
+    continueBtn.classList.add("btn-primary")
     continueBtn.disabled = false;
 }
 
@@ -263,3 +325,19 @@ async function fetchCapableEmployees() {
         //TODO Exception handling?
     }
 }
+
+function fetchEmployeeAvailableTimeSlots() {
+    fetch(fetchEmployeeTimeSlotsURL + selectedEmployeeId + "/" + selectedDate + "/" + selectedDuration)
+        .then(result => {
+            if (result >= 400) {
+                throw new Error();
+            }
+            return result.json()
+        }).then(body => {
+        employeeAvailableWorkTimes = body;
+        console.log(employeeAvailableWorkTimes)
+        createTimeslots()
+    })
+}
+
+
