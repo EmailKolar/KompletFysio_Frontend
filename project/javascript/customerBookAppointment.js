@@ -61,6 +61,17 @@ async function nextStep() {
             break
         case 4:
             console.log("choose date")
+            let dateContainer = document.getElementById("dateInputContainer")
+            let dateInput = document.createElement("input")
+            dateInput.type = "date"
+
+            dateInput.addEventListener("change", function() {
+                console.log(dateInput.value)
+            });
+            // console.log(dateInput.value)
+
+            dateContainer.appendChild(dateInput)
+
             //logic for choose date (based on chosen treatment and which employees are applicable)
             break
         case 5:
@@ -98,8 +109,12 @@ function showCapableEmployees() {
     wildCardEmployeeDiv.style.marginBottom = "25px"
     wildCardEmployeeDiv.onclick = function () {
         //customer can select the wilcardEmployee, and the selectedEmployeeId will become <0 Anne wanted that feature :)
-        wildCardEmployeeDiv.classList.remove("btn-secondary")
-        wildCardEmployeeDiv.classList.add("btn-primary")
+        // wildCardEmployeeDiv.classList.remove("btn-secondary")
+        // wildCardEmployeeDiv.classList.add("btn-primary")
+        removeBlueColorOnButtons()
+        wildCardEmployeeDiv.classList.remove("btn-secondary");
+        wildCardEmployeeDiv.classList.add("btn-primary");
+
         selectedEmployeeId = -1
         console.log("selected EmployeeId: " + selectedEmployeeId);
         enableContinueButton();
@@ -119,8 +134,13 @@ function showCapableEmployees() {
         employeeDiv.onclick = function () {
 
             // Add btn-primary class to the selected employee (btn)
-            employeeDiv.classList.remove("btn-secondary")
-            employeeDiv.classList.add("btn-primary")
+            // employeeDiv.classList.remove("btn-secondary")
+            // employeeDiv.classList.add("btn-primary")
+
+            removeBlueColorOnButtons()
+            // Add btn-primary class to the selected employee (btn)
+            employeeDiv.classList.remove("btn-secondary");
+            employeeDiv.classList.add("btn-primary");
 
             selectedEmployeeId = employeeList[i].employeeId
             console.log("selected EmployeeId: " + selectedEmployeeId)
@@ -130,6 +150,14 @@ function showCapableEmployees() {
     }
 }
 
+function removeBlueColorOnButtons() {
+    let allButtons = document.querySelectorAll(".employeeBox");
+    console.log(allButtons)
+    allButtons.forEach(button => {
+        button.classList.remove("btn-primary");
+        button.classList.add("btn-secondary");
+    });
+}
 
 function inputTreatmentLists() {
     let massageIdRange = [1, 2, 3, 4]
