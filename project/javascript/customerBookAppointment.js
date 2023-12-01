@@ -103,7 +103,7 @@ function date() {
         selectedDate = dateInput.value
         console.log(dateInput.value)
 
-        updateTimeSlots()
+        fetchEmployeeAvailableTimeSlots()
 
     });
     // console.log(dateInput.value)
@@ -112,25 +112,35 @@ function date() {
 }
 
 function updateTimeSlots() {
-    fetchEmployeeAvailableTimeSlots()
+    // fetchEmployeeAvailableTimeSlots()
     // let timestamps = []
-    // for (let i = 0; i < employeeAvailableWorkTimes.length; i++) {
-    //     let start1 = employeeAvailableWorkTimes[i].startTime
-    //     let end1 = employeeAvailableWorkTimes[i].endTime
-    //
-    //     console.log()
-    //     console.log(start1)
-    //     console.log(end1)
-    //     console.log()
-    //
-    // }
-    let start1 = employeeAvailableWorkTimes[0].startTime
-    let end1 = employeeAvailableWorkTimes[0].endTime
-    console.log()
-    console.log(start1)
-    console.log(end1)
-    console.log()
+    for (let i = 0; i < employeeAvailableWorkTimes.length; i++) {
+        let start1 = employeeAvailableWorkTimes[i].startTime
+        let end1 = employeeAvailableWorkTimes[i].endTime
+        console.log()
+        console.log(start1)
+        console.log(end1)
+        console.log()
+    }
 }
+
+//revervations yoink:
+function createTimeslots(availableWorkTimes) {
+    const timeslots = document.getElementById("timeslots")
+    timeslots.innerHTML = ""
+    availableWorkTimes.forEach(time => {
+        console.log("I'm running")
+        const row = document.createElement('tr')
+
+        const start = document.createElement('td');
+        start.textContent = time.startTime;
+        row.appendChild(start);
+
+        timeslots.appendChild(row);
+    })
+}
+
+
 
 function showCapableEmployees() {
     let employeeContainer = document.getElementById("employeesContainer")
@@ -335,6 +345,7 @@ function fetchEmployeeAvailableTimeSlots() {
         }).then(body => {
         employeeAvailableWorkTimes = body;
         console.log(employeeAvailableWorkTimes)
+        createTimeslots(employeeAvailableWorkTimes)
     })
 }
 
