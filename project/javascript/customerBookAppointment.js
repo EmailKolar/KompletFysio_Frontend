@@ -16,6 +16,7 @@ let lungList = []
 
 //step 2 - choose treatment
 let selectedTreatmentId;
+let selectedDuration;
 let treatmentTypeButton = document.getElementById("treatmentTypeButton")
 let treatmentButton = document.getElementById("treatmentButton")
 let treatmentTypeDropdown = document.getElementById("treatmentSelectionDropDown")
@@ -23,12 +24,15 @@ let treatmentTypeDropdown = document.getElementById("treatmentSelectionDropDown"
 //step 3 - choose employee
 let employeeList = []
 let selectedEmployeeId;
+let selectedDate;
 
+//step 4 - chose date/time
+let employeeAvailableWorkTimes = []
 
 //Fetches
 const fetchAllTreatmentsURL = "http://localhost:8080/allTreatments"
 const fetchEmployeesWithTreatmentIdURL = "http://localhost:8080/getEmployeeByTreatmentId/"
-
+const fetchEmployeeTimeSlotsURL = "http://localhost:8080/getEmployeeHoursById/"
 
 async function nextStep() {
 
@@ -60,19 +64,10 @@ async function nextStep() {
             //logic for choose employee (dropdown with applicable employees based on chosen treatment, date and time)
             break
         case 4:
-            console.log("choose date")
-            let dateContainer = document.getElementById("dateInputContainer")
-            let dateInput = document.createElement("input")
-            dateInput.type = "date"
-
-            dateInput.addEventListener("change", function() {
-                console.log(dateInput.value)
-            });
-            // console.log(dateInput.value)
-
-            dateContainer.appendChild(dateInput)
-
             //logic for choose date (based on chosen treatment and which employees are applicable)
+            console.log("choose date")
+            date()
+
             break
         case 5:
             console.log("choose time")
@@ -97,6 +92,44 @@ async function nextStep() {
     progressBar.setAttribute('aria-valuenow', progress)
 
 
+}
+
+function date() {
+    let dateContainer = document.getElementById("dateInputContainer")
+    let dateInput = document.createElement("input")
+    dateInput.type = "date"
+
+    dateInput.addEventListener("change", function () {
+        selectedDate = dateInput.value
+        console.log(dateInput.value)
+
+        updateTimeSlots()
+
+    });
+    // console.log(dateInput.value)
+
+    dateContainer.appendChild(dateInput)
+}
+
+function updateTimeSlots() {
+    fetchEmployeeAvailableTimeSlots()
+    // let timestamps = []
+    // for (let i = 0; i < employeeAvailableWorkTimes.length; i++) {
+    //     let start1 = employeeAvailableWorkTimes[i].startTime
+    //     let end1 = employeeAvailableWorkTimes[i].endTime
+    //
+    //     console.log()
+    //     console.log(start1)
+    //     console.log(end1)
+    //     console.log()
+    //
+    // }
+    let start1 = employeeAvailableWorkTimes[0].startTime
+    let end1 = employeeAvailableWorkTimes[0].endTime
+    console.log()
+    console.log(start1)
+    console.log(end1)
+    console.log()
 }
 
 function showCapableEmployees() {
@@ -182,7 +215,6 @@ function selectTreatmentType(choice) {
     disableContinueButton()
 
     treatmentTypeDropdown.innerHTML = ""
-
     // treatmentTypeButton.textContent = "Vælg Behandlings Type"
 
     treatmentButton.textContent = "Vælg Behandling"
@@ -223,7 +255,8 @@ function selectTreatmentType(choice) {
             console.log("treatment:", treatment)
             treatmentButton.textContent = treatment.treatmentName
             selectedTreatmentId = treatment.treatmentId
-            console.log("Selected treatment ID:", selectedTreatmentId)
+            selectedDuration = treatment.duration
+            console.log("Selected treatment ID:", selectedTreatmentId + ", selected duration: " + selectedDuration)
             treatmentButton.classList.add("btn-secondary")
             enableContinueButton()
         };
@@ -291,3 +324,18 @@ async function fetchCapableEmployees() {
         //TODO Exception handling?
     }
 }
+
+function fetchEmployeeAvailableTimeSlots() {
+    fetch(fetchEmployeeTimeSlotsURL + selectedEmployeeId + "/" + selectedDate)
+        .then(result => {
+            if (result >= 400) {
+                throw new Error();
+            }
+            return result.json()
+        }).then(body => {
+        employeeAvailableWorkTimes = body;
+        console.log(employeeAvailableWorkTimes)
+    })
+}
+
+
