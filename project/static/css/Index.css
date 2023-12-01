@@ -96,6 +96,7 @@ h6{
 }
 .footerContainer{
     background-color: #6564ab;
+    border-top: 10px solid #45447e;
 }
 .footerBoks{
     border: 2px dotted #e9e9f3;
@@ -113,4 +114,11 @@ h6{
 }
 .footerRowStyling:nth-child(odd){
     background-color: #7575b4;
+}
+.creditContainer{
+    height: auto;
+    color: white;
+    text-align: center;
+    padding-top: 15px;
+    background-color: #45447e;
 }
