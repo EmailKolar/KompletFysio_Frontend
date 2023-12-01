@@ -99,7 +99,7 @@ h6{
     border-top: 10px solid #45447e;
 }
 .footerBoks{
-    border: 2px dotted #e9e9f3;
+    border: 2px dotted #45447e;
     display: flex;
     flex-direction: column;
     justify-content: center;
