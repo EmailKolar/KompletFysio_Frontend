@@ -1,0 +1,10 @@
+.employeeBox{
+    display: block;
+    width: 100%; /* or any desired width */
+    margin: 3px;
+}
+.dropdownButton{
+    display: block;
+    width: 100%; /* or any desired width */
+    margin: 3px;
+}
