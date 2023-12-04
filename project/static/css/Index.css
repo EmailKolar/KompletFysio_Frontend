@@ -94,3 +94,31 @@ h6{
     color: #64ab65;
     border-bottom: 1px solid #6564ab;
 }
+.footerContainer{
+    background-color: #6564ab;
+    border-top: 10px solid #45447e;
+}
+.footerBoks{
+    border: 2px dotted #45447e;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.footerText{
+    color: white;
+}
+.footerRowStyling{
+    padding-top: 12px;
+    background-color: #6564ab;
+}
+.footerRowStyling:nth-child(odd){
+    background-color: #7575b4;
+}
+.creditContainer{
+    height: auto;
+    color: white;
+    text-align: center;
+    padding-top: 15px;
+    background-color: #45447e;
+}
