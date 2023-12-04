@@ -62,6 +62,7 @@ h6{
 }
 .bookSection:hover{
     background-color: #4d8f4e;
+    cursor: pointer;
 }
 .bookButton{
     text-transform: uppercase;
