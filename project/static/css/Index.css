@@ -71,8 +71,7 @@ h6{
 }
 .bannerContainer {
     height:500px;
-    background-image: url("project/static/img/banner_1.jpg");
-    background-color: lightgray;
+    background-image: url("project/static/img/forsiderBannerImg.jpeg");
 }
 .navbar {
     justify-content: flex-end;
