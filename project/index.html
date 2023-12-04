@@ -12,6 +12,9 @@
     <script src="javascript/Index.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="static/css/Index.css">
+    <link rel="stylesheet" href="static/css/BookAppointment.css">
+
+
 
 </head>
 <body>
@@ -125,7 +128,7 @@
     </div>
 </div>
 
-<div class="bookSection d-flex justify-content-center">
+<div class="bookSection d-flex justify-content-center" data-bs-toggle="modal" data-bs-target="#newAppointmentModal">
     <p class="bookButton">
         Book Tid Online
         <i class="bi bi-hand-index ms-1"></i>
@@ -143,5 +146,125 @@
 
 <div id="footerContentIndex"></div>
 
+<div class="modal fade" id="newAppointmentModal" data-bs-backdrop="static" data-bs-keyboard="false"
+     aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-fullscreen-sm-down">
+
+        <div class="modal-content">
+
+            <div class="modal-header" style="align-content: center">
+
+                <h5 class="modal-title" id="staticBackdropLabel">Book tid</h5>
+                <!--button underneath is the X close button-->
+                <!--<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
+
+            </div>
+            <!--progress bar underneath-->
+            <div class="progress mt-3">
+                <div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0"
+                     aria-valuemax="100"></div>
+            </div>
+
+            <div class="modal-body">
+
+                <div id="step0Content">
+                    <div style="text-align: center">
+                        <p>Tak fordi du vil booke en tid hos os!</p>
+                        <p>Følg venligst denne formular</p>
+                    </div>
+
+                </div>
+
+                <!-- Log In Customer -->
+                <div id="step1Content" style="display: none;">
+                    Step 1: Log ind customer ELLER Opret customer
+                </div>
+
+                <!-- Choose Employee -->
+                <div id="step2Content" style="display: none;">
+                    <div class="container">
+
+                        <div class="col">
+                            <div class="dropdown">
+                                <button type="button" class="btn btn-primary dropdown-toggle dropdownButton"
+                                        data-bs-toggle="dropdown" id="treatmentTypeButton">
+                                    Vælg Behandlings Type
+                                </button>
+                                <ul class="dropdown-menu" style="width: 100%" >
+                                    <li class="dropdown-item" style="text-align: center" onclick="selectTreatmentType(1)">Fysio- & sportsfysioterapi</li>
+                                    <li class="dropdown-item" style="text-align: center" onclick="selectTreatmentType(2)">Massage</li>
+                                    <li class="dropdown-item" style="text-align: center" onclick="selectTreatmentType(3)">Gravid- & efterfødsel</li>
+                                    <li class="dropdown-item" style="text-align: center" onclick="selectTreatmentType(4)">Lungefysioterapi</li>
+
+                                </ul>
+                            </div>
+
+                            <div class="dropdown">
+                                <button type="button" class="btn btn-secondary dropdown-toggle dropdownButton"
+                                        data-bs-toggle="dropdown" id="treatmentButton">
+                                    Vælg Behandling
+                                </button>
+                                <ul class="dropdown-menu" id="treatmentSelectionDropDown" style="width: 100%">
+                                    <!--list object should depend on chosen Behandling-->
+                                    <!--this should be done in JS-->
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Choose treatment -->
+                <div id="step3Content" style="display: none;">
+                    <!--                    Step 3: Vælg Employee-->
+                    <div class="container" id="employeesContainer">
+                        <!--                        <div class="btn" id="wildCardEmployeeDiv">-->
+                        <!--                            Vilkårlig Behandler-->
+                        <!--                        </div>-->
+                    </div>
+                </div>
+
+                <!-- Choose day of appointment -->
+                <div id="step4Content" style="display: none;">
+                    Step 3: Vælg dag
+                    <!--                    <input type="date">-->
+                    <div class="table" id="dateInputContainer">
+                        <!--                        <input type="date"> FIXME HER -->
+                        <table>
+                            <thead>
+                            <tr>
+                                <th>Time: </th>
+                            </tr>
+                            </thead>
+                            <tbody id="timeslots"></tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Choose time of day -->
+                <div id="step5Content" style="display: none;">
+                    Step 4: Vælg Tid
+                    <input type="time">
+                </div>
+
+                <div id="step6Content" style="display: none;">
+                    Step 6: Bekræftelse
+                    Du kan nu lukke dette vindue :)
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onclick="resetBooking()">
+                        Vend
+                        Tilbage
+                    </button>
+                </div>
+
+            </div>
+            <div class="modal-footer d-flex justify-content-between">
+                <button type="button" id="cancelBtn" class="btn btn-danger" data-bs-dismiss="modal"
+                        onclick="resetBooking()">Afbryd
+                </button>
+                <button type="button" id="continueBtn" class="btn btn-primary" onclick="nextStep()">Fortsæt</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="javascript/customerBookAppointment.js"></script>
 </body>
 </html>
