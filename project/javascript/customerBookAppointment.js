@@ -28,7 +28,7 @@ let selectedDate;
 
 //step 4 - chose date/time
 let employeeAvailableWorkTimes = []
-let selectedTimeSlot;
+let selectedStartTime;
 
 //Fetches
 const fetchAllTreatmentsURL = "http://localhost:8080/allTreatments"
@@ -68,12 +68,13 @@ async function nextStep() {
             //logic for choose date (based on chosen treatment and which employees are applicable)
             console.log("choose date")
             date()
-            await selectTime()
 
             break
         case 5:
             console.log("choose time")
             //logic for choose time
+            timeFormatter()
+
             break
         case 6:
             console.log("done")
@@ -96,15 +97,22 @@ async function nextStep() {
 
 }
 
-async function selectTime(){
-
-    console.log(selectedTimeSlot)
-
+async function timeFormatter(){
+    //Finde start tid
+    await console.log(selectedStartTime)
+    //Finde slut tid: duration.time + startTime
+    await console.log(selectedDuration)
+    //Finde Dato
+    /*
+    const [year, month, day] = date.split('-');
+    const [hours, minutes] = time.split(':');
+    const localDate = new Date(year, month - 1, day, hours, minutes);
+    const options = { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false };
+    const formattedDate = localDate.toLocaleDateString('en-US', options);
+    const formattedTime = localDate.toLocaleTimeString('en-US', options);
+     */
 
 }
-
-
-
 
 
 function date() {
@@ -139,7 +147,7 @@ function createTimeslots() {
             start.onclick = function () {
                 console.log("clicked on timeslot: " + start.textContent)
                 //selected timeslot = this timeslot
-                selectedTimeSlot = start.textContent
+                selectedStartTime = start.textContent
             }
             row.appendChild(start);
             timeslots.appendChild(row)
