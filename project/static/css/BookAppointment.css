@@ -8,3 +8,29 @@
     width: 100%; /* or any desired width */
     margin: 3px;
 }
+.timeslotBox{
+    color: white;
+    display: block;
+    width: 100%; /* or any desired width */
+    padding: 7px;
+    /*cursor: pointer;*/
+    text-align: center;
+    border-radius: 10px;
+    background-color: #4d8f4e;
+}
+.timeslotBox:hover{
+    background-color: #64ab65;
+    cursor: pointer;
+}
+.timeslotBoxSelected{
+    background-color: #7ad57b;
+    border: 2px solid black;
+}
+.btnGreen{
+    background-color: #4d8f4e;
+}
+.btnGrey{
+    background-color: #7f817f;
+}
+
+

@@ -31,9 +31,12 @@
 
             </div>
             <!--progress bar underneath-->
-            <div class="progress mt-3">
-                <div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0"
-                     aria-valuemax="100"></div>
+            <div style="padding: 10px">
+                <div class="progress mt-3">
+                    <div class="progress-bar" role="progressbar" style="width: 0%;background-color: #6564ab"
+                         aria-valuenow="0" aria-valuemin="0"
+                         aria-valuemax="100"></div>
+                </div>
             </div>
 
             <div class="modal-body">
@@ -61,11 +64,19 @@
                                         data-bs-toggle="dropdown" id="treatmentTypeButton">
                                     Vælg Behandlings Type
                                 </button>
-                                <ul class="dropdown-menu" style="width: 100%" >
-                                    <li class="dropdown-item" style="text-align: center" onclick="selectTreatmentType(1)">Fysio- & sportsfysioterapi</li>
-                                    <li class="dropdown-item" style="text-align: center" onclick="selectTreatmentType(2)">Massage</li>
-                                    <li class="dropdown-item" style="text-align: center" onclick="selectTreatmentType(3)">Gravid- & efterfødsel</li>
-                                    <li class="dropdown-item" style="text-align: center" onclick="selectTreatmentType(4)">Lungefysioterapi</li>
+                                <ul class="dropdown-menu" style="width: 100%">
+                                    <li class="dropdown-item" style="text-align: center"
+                                        onclick="selectTreatmentType(1)">Fysio- & sportsfysioterapi
+                                    </li>
+                                    <li class="dropdown-item" style="text-align: center"
+                                        onclick="selectTreatmentType(2)">Massage
+                                    </li>
+                                    <li class="dropdown-item" style="text-align: center"
+                                        onclick="selectTreatmentType(3)">Gravid- & efterfødsel
+                                    </li>
+                                    <li class="dropdown-item" style="text-align: center"
+                                        onclick="selectTreatmentType(4)">Lungefysioterapi
+                                    </li>
 
                                 </ul>
                             </div>
@@ -86,24 +97,21 @@
 
                 <!-- Choose treatment -->
                 <div id="step3Content" style="display: none;">
-<!--                    Step 3: Vælg Employee-->
+                    <!--                    Step 3: Vælg Employee-->
                     <div class="container" id="employeesContainer">
-<!--                        <div class="btn" id="wildCardEmployeeDiv">-->
-<!--                            Vilkårlig Behandler-->
-<!--                        </div>-->
+                        <!--                        <div class="btn" id="wildCardEmployeeDiv">-->
+                        <!--                            Vilkårlig Behandler-->
+                        <!--                        </div>-->
                     </div>
                 </div>
 
                 <!-- Choose day of appointment -->
                 <div id="step4Content" style="display: none;">
-                    Step 3: Vælg dag
-<!--                    <input type="date">-->
-                    <div class="table" id="dateInputContainer">
-<!--                        <input type="date"> FIXME HER -->
-                        <table>
+                    <div id="dateInputContainer" class="d-flex justify-content-center" style="width: 100%"></div>
+                    <div class="table table-borderless d-flex justify-content-center" id="timeSlotContainer">
+                        <table style="width: 75%">
                             <thead>
                             <tr>
-                                <th>Time: </th>
                             </tr>
                             </thead>
                             <tbody id="timeslots"></tbody>
@@ -111,14 +119,8 @@
                     </div>
                 </div>
 
-                <!-- Choose time of day -->
                 <div id="step5Content" style="display: none;">
-                    Step 4: Vælg Tid
-                    <input type="time">
-                </div>
-
-                <div id="step6Content" style="display: none;">
-                    Step 6: Bekræftelse
+                    Step 4: Bekræftelse
                     Du kan nu lukke dette vindue :)
                     <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onclick="resetBooking()">
                         Vend

@@ -67,13 +67,8 @@ async function nextStep() {
             //logic for choose date (based on chosen treatment and which employees are applicable)
             console.log("choose date")
             date()
-
             break
         case 5:
-            console.log("choose time")
-            //logic for choose time
-            break
-        case 6:
             console.log("done")
             cancelBtn.style.display = 'none'
             continueBtn.style.display = 'none'
@@ -96,6 +91,8 @@ async function nextStep() {
 
 function date() {
     let dateContainer = document.getElementById("dateInputContainer")
+    dateContainer.innerHTML = ""
+    dateContainer.style.margin = "10px"
     let dateInput = document.createElement("input")
     dateInput.type = "date"
 
@@ -120,15 +117,23 @@ function createTimeslots() {
     for (let i = 0; i < employeeAvailableWorkTimes.length; i++) {
 
         const row = document.createElement('tr')
-            const start = document.createElement('td');
-            start.textContent = employeeAvailableWorkTimes[i];
+        const singleTimeSlot = document.createElement("div")
+        singleTimeSlot.style.padding = "3px"
+        singleTimeSlot.style.width = "100%"
+        const start = document.createElement('td');
+        start.classList.add("timeslotBox")
+        start.textContent = employeeAvailableWorkTimes[i];
 
-            start.onclick = function () {
-                console.log("clicked on timeslot: " + start.textContent)
-                //selected timeslot = this timeslot
-            }
-            row.appendChild(start);
-            timeslots.appendChild(row)
+        start.onclick = function () {
+            console.log("clicked on timeslot: " + start.textContent)
+            const allTimeSlots = document.querySelectorAll('.timeslotBox');
+            allTimeSlots.forEach(slot => slot.classList.remove('timeslotBoxSelected'));
+            start.classList.add('timeslotBoxSelected');
+        }
+
+        singleTimeSlot.appendChild(start);
+        row.appendChild(singleTimeSlot)
+        timeslots.appendChild(row)
     }
 }
 
@@ -143,8 +148,6 @@ function showCapableEmployees() {
     wildCardEmployeeDiv.style.marginBottom = "25px"
     wildCardEmployeeDiv.onclick = function () {
         //customer can select the wilcardEmployee, and the selectedEmployeeId will become <0 Anne wanted that feature :)
-        // wildCardEmployeeDiv.classList.remove("btn-secondary")
-        // wildCardEmployeeDiv.classList.add("btn-primary")
         removeBlueColorOnButtons()
         wildCardEmployeeDiv.classList.remove("btn-secondary");
         wildCardEmployeeDiv.classList.add("btn-primary");
@@ -166,10 +169,6 @@ function showCapableEmployees() {
 
         // make an onclick for each div/employee
         employeeDiv.onclick = function () {
-
-            // Add btn-primary class to the selected employee (btn)
-            // employeeDiv.classList.remove("btn-secondary")
-            // employeeDiv.classList.add("btn-primary")
 
             removeBlueColorOnButtons()
             // Add btn-primary class to the selected employee (btn)
@@ -288,7 +287,6 @@ function resetBooking() {
 
 function disableContinueButton() {
     continueBtn.classList.remove("btn-primary")
-    continueBtn.classList.add("btn-secondary")
     continueBtn.disabled = true;
 }
 
