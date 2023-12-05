@@ -28,6 +28,11 @@
 }
 .btnGreen{
     background-color: #4d8f4e;
+    color: white;
+}
+.btnGreen:hover{
+    background-color: #7ad57b;
+    color: white;
 }
 .btnGrey{
     background-color: #7f817f;

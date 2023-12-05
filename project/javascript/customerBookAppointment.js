@@ -28,6 +28,7 @@ let selectedDate;
 
 //step 4 - chose date/time
 let employeeAvailableWorkTimes = []
+const tableBody = document.getElementById("timeslots")
 
 //Fetches
 const fetchAllTreatmentsURL = "http://localhost:8080/allTreatments"
@@ -66,6 +67,7 @@ async function nextStep() {
         case 4:
             //logic for choose date (based on chosen treatment and which employees are applicable)
             console.log("choose date")
+            disableContinueButton()
             date()
             break
         case 5:
@@ -111,8 +113,12 @@ function date() {
 
 //revervations yoink:
 function createTimeslots() {
-    const timeslots = document.getElementById("timeslots")
-    timeslots.innerHTML = ""
+    //reset the timeslot Table body
+    while (tableBody.firstChild) {
+        tableBody.removeChild(tableBody.firstChild);
+        console.log("rest 1 table")
+        disableContinueButton()
+    }
 
     for (let i = 0; i < employeeAvailableWorkTimes.length; i++) {
 
@@ -120,20 +126,21 @@ function createTimeslots() {
         const singleTimeSlot = document.createElement("div")
         singleTimeSlot.style.padding = "3px"
         singleTimeSlot.style.width = "100%"
-        const start = document.createElement('td');
+        const start = document.createElement('td')
         start.classList.add("timeslotBox")
-        start.textContent = employeeAvailableWorkTimes[i];
+        start.textContent = employeeAvailableWorkTimes[i]
 
         start.onclick = function () {
             console.log("clicked on timeslot: " + start.textContent)
-            const allTimeSlots = document.querySelectorAll('.timeslotBox');
-            allTimeSlots.forEach(slot => slot.classList.remove('timeslotBoxSelected'));
-            start.classList.add('timeslotBoxSelected');
+            const allTimeSlots = document.querySelectorAll('.timeslotBox')
+            allTimeSlots.forEach(slot => slot.classList.remove('timeslotBoxSelected'))
+            start.classList.add('timeslotBoxSelected')
+            enableContinueButton()
         }
 
         singleTimeSlot.appendChild(start);
         row.appendChild(singleTimeSlot)
-        timeslots.appendChild(row)
+        tableBody.appendChild(row)
     }
 }
 
@@ -280,19 +287,26 @@ function resetBooking() {
     treatmentTypeDropdown.innerHTML = ""
     treatmentButton.textContent = "Vælg Behandling"
 
+    //reset the timeslot Table body
+    while (tableBody.firstChild) {
+        tableBody.removeChild(tableBody.firstChild);
+        console.log("rest 1 table")
+    }
+
+
     // reset the progressbar to 0
     progressBar.style.width = 0
     enableContinueButton()
 }
 
 function disableContinueButton() {
-    continueBtn.classList.remove("btn-primary")
+    // continueBtn.classList.remove("btn-primary")
     continueBtn.disabled = true;
 }
 
 function enableContinueButton() {
-    continueBtn.classList.remove("btn-secondary")
-    continueBtn.classList.add("btn-primary")
+    // continueBtn.classList.remove("btn-secondary")
+    // continueBtn.classList.add("btn-primary")
     continueBtn.disabled = false;
 }
 
