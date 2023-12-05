@@ -3,9 +3,12 @@ let currentStep = 0
 
 const progressBar = document.querySelector('.progress-bar')
 
-//variable for the blue "Fortsæt" button and red "Fortryd"
+//variable for the green "Fortsæt" button and red "Fortryd"
 const continueBtn = document.getElementById("continueBtn")
 const cancelBtn = document.getElementById("cancelBtn")
+
+//Modal title - this changes for every step in the modal
+const modalTitle = document.getElementById("staticBackdropLabel")
 
 //lists for the different treatments
 let allTreatments = []
@@ -45,11 +48,12 @@ async function nextStep() {
     switch (currentStep) {
 
         case 1:
-            console.log("customer login")
+            modalTitle.innerHTML = "Login eller Opret"
             //logic for customer login or customer Registration
             break
         case 2:
-            console.log("treatment")
+            modalTitle.innerHTML = "Vælg Behandling"
+            treatmentButton.disabled = true
             disableContinueButton()
             await fetchTreatments()
             inputTreatmentLists()
@@ -57,7 +61,7 @@ async function nextStep() {
             //logic for choose treatment (dropdown?)
             break
         case 3:
-            console.log("choose employee")
+            modalTitle.innerHTML = "Vælg Behandler"
             disableContinueButton()
             await fetchCapableEmployees()
             showCapableEmployees()
@@ -65,13 +69,12 @@ async function nextStep() {
             //logic for choose employee (dropdown with applicable employees based on chosen treatment, date and time)
             break
         case 4:
-            //logic for choose date (based on chosen treatment and which employees are applicable)
-            console.log("choose date")
+            modalTitle.innerHTML = "Vælg Dato & Tid"
             disableContinueButton()
             date()
             break
         case 5:
-            console.log("done")
+            modalTitle.innerHTML = "Færdig"
             cancelBtn.style.display = 'none'
             continueBtn.style.display = 'none'
             //logic for confirmation (save to DB ect.)
@@ -81,14 +84,11 @@ async function nextStep() {
     // Show the next step in the Modal
     document.getElementById(`step${currentStep}Content`).style.display = 'block'
 
-
     // Update the progress bar to visually inform the customer
     // const progressBar = document.querySelector('.progress-bar')
-    const progress = (currentStep / 6) * 100
+    const progress = (currentStep / 5) * 100
     progressBar.style.width = `${progress}%`
     progressBar.setAttribute('aria-valuenow', progress)
-
-
 }
 
 function date() {
@@ -105,13 +105,9 @@ function date() {
         fetchEmployeeAvailableTimeSlots()
 
     });
-    // console.log(dateInput.value)
-
     dateContainer.appendChild(dateInput)
 }
 
-
-//revervations yoink:
 function createTimeslots() {
     //reset the timeslot Table body
     while (tableBody.firstChild) {
@@ -121,7 +117,6 @@ function createTimeslots() {
     }
 
     for (let i = 0; i < employeeAvailableWorkTimes.length; i++) {
-
         const row = document.createElement('tr')
         const singleTimeSlot = document.createElement("div")
         singleTimeSlot.style.padding = "3px"
@@ -137,27 +132,26 @@ function createTimeslots() {
             start.classList.add('timeslotBoxSelected')
             enableContinueButton()
         }
-
         singleTimeSlot.appendChild(start);
         row.appendChild(singleTimeSlot)
         tableBody.appendChild(row)
     }
 }
 
-
 function showCapableEmployees() {
     let employeeContainer = document.getElementById("employeesContainer")
     employeeContainer.innerHTML = ''
 
+    //customer can select the wilcardEmployee, and the selectedEmployeeId will become <0 Anne wanted that feature :)
     let wildCardEmployeeDiv = document.createElement("div")
     wildCardEmployeeDiv.textContent = "Vilkårlig Behandler"
-    wildCardEmployeeDiv.classList.add("btn", "btn-secondary", "employeeBox")
+    wildCardEmployeeDiv.classList.add("btn", "btnGreen", "employeeBox")
     wildCardEmployeeDiv.style.marginBottom = "25px"
     wildCardEmployeeDiv.onclick = function () {
-        //customer can select the wilcardEmployee, and the selectedEmployeeId will become <0 Anne wanted that feature :)
-        removeBlueColorOnButtons()
-        wildCardEmployeeDiv.classList.remove("btn-secondary");
-        wildCardEmployeeDiv.classList.add("btn-primary");
+
+        let allGreenButtons = document.querySelectorAll('.btnGreenSelected')
+        allGreenButtons.forEach(box => box.classList.remove('btnGreenSelected'))
+        wildCardEmployeeDiv.classList.add('btnGreenSelected')
 
         selectedEmployeeId = -1
         console.log("selected EmployeeId: " + selectedEmployeeId);
@@ -167,8 +161,7 @@ function showCapableEmployees() {
 
     for (let i = 0; i < employeeList.length; i++) {
         let employeeDiv = document.createElement("div")
-        employeeDiv.classList.add("btn", "btn-secondary")
-        employeeDiv.classList.add("employeeBox")
+        employeeDiv.classList.add("btn", "employeeBox", "btnGreen")
 
         //set the name of the employee
         let employeeName = employeeList[i].firstName + " " + employeeList[i].lastName
@@ -177,10 +170,9 @@ function showCapableEmployees() {
         // make an onclick for each div/employee
         employeeDiv.onclick = function () {
 
-            removeBlueColorOnButtons()
-            // Add btn-primary class to the selected employee (btn)
-            employeeDiv.classList.remove("btn-secondary");
-            employeeDiv.classList.add("btn-primary");
+            let allGreenButtons = document.querySelectorAll('.btnGreenSelected')
+            allGreenButtons.forEach(box => box.classList.remove('btnGreenSelected'))
+            employeeDiv.classList.add('btnGreenSelected')
 
             selectedEmployeeId = employeeList[i].employeeId
             console.log("selected EmployeeId: " + selectedEmployeeId)
@@ -190,14 +182,6 @@ function showCapableEmployees() {
     }
 }
 
-function removeBlueColorOnButtons() {
-    let allButtons = document.querySelectorAll(".employeeBox");
-    console.log(allButtons)
-    allButtons.forEach(button => {
-        button.classList.remove("btn-primary");
-        button.classList.add("btn-secondary");
-    });
-}
 
 function inputTreatmentLists() {
     let massageIdRange = [1, 2, 3, 4]
@@ -209,22 +193,16 @@ function inputTreatmentLists() {
     fysioList = allTreatments.filter(treatment => sportsFysioIdRange.includes(treatment.treatmentId))
     pregnantList = allTreatments.filter(treatment => pregnantIdRange.includes(treatment.treatmentId))
     lungList = allTreatments.filter(treatment => lungIdRange.includes(treatment.treatmentId))
-
-    // console.log(massageList)
-    // console.log(fysioList)
-    // console.log(pregnantList)
-    // console.log(lungList)
-
 }
 
 //selects the chosen treatmentType in step 2
 function selectTreatmentType(choice) {
     disableContinueButton()
-
     treatmentTypeDropdown.innerHTML = ""
-    // treatmentTypeButton.textContent = "Vælg Behandlings Type"
-
     treatmentButton.textContent = "Vælg Behandling"
+
+    //now the user can press the "Vælg Behandling" button
+    treatmentButton.disabled = false
 
     //put the chosen list into "behandlingsType"
     let selectedList;
@@ -246,16 +224,13 @@ function selectTreatmentType(choice) {
             selectedList = lungList
             break;
     }
-    //add and remove styling to the buttons
-    treatmentTypeButton.classList.remove("btn-primary")
-    treatmentTypeButton.classList.add("btn-secondary")
-    treatmentButton.classList.remove("btn-secondary")
-    treatmentButton.classList.add("btn-primary")
+
 
     //Add the list items to the dropDown
     selectedList.forEach(treatment => {
         let listTreatment = document.createElement("li")
         listTreatment.className = "dropdown-item"
+        listTreatment.style.cursor = "pointer"
         listTreatment.textContent = treatment.treatmentName
         listTreatment.style.textAlign = "center"
         listTreatment.onclick = () => {
@@ -264,7 +239,6 @@ function selectTreatmentType(choice) {
             selectedTreatmentId = treatment.treatmentId
             selectedDuration = treatment.duration
             console.log("Selected treatment ID:", selectedTreatmentId + ", selected duration: " + selectedDuration)
-            treatmentButton.classList.add("btn-secondary")
             enableContinueButton()
         };
         treatmentTypeDropdown.appendChild(listTreatment)
@@ -282,8 +256,6 @@ function resetBooking() {
     cancelBtn.style.display = 'block'
     continueBtn.style.display = 'block'
     treatmentTypeButton.textContent = "Vælg Behandlings Type"
-    treatmentTypeButton.classList.remove("btn-secondary")
-    treatmentTypeButton.classList.add("btn-primary")
     treatmentTypeDropdown.innerHTML = ""
     treatmentButton.textContent = "Vælg Behandling"
 
@@ -293,20 +265,16 @@ function resetBooking() {
         console.log("rest 1 table")
     }
 
-
     // reset the progressbar to 0
     progressBar.style.width = 0
     enableContinueButton()
 }
 
 function disableContinueButton() {
-    // continueBtn.classList.remove("btn-primary")
     continueBtn.disabled = true;
 }
 
 function enableContinueButton() {
-    // continueBtn.classList.remove("btn-secondary")
-    // continueBtn.classList.add("btn-primary")
     continueBtn.disabled = false;
 }
 
@@ -318,7 +286,6 @@ async function fetchTreatments() {
         }
         const body = await result.json();
         allTreatments = body;
-        // console.log(allTreatments);
     } catch (error) {
         //TODO Exception handling?
     }
