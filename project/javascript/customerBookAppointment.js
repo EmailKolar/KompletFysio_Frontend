@@ -28,6 +28,7 @@ let selectedDate;
 
 //step 4 - chose date/time
 let employeeAvailableWorkTimes = []
+let selectedTimeSlot;
 
 //Fetches
 const fetchAllTreatmentsURL = "http://localhost:8080/allTreatments"
@@ -67,6 +68,7 @@ async function nextStep() {
             //logic for choose date (based on chosen treatment and which employees are applicable)
             console.log("choose date")
             date()
+            await selectTime()
 
             break
         case 5:
@@ -93,6 +95,17 @@ async function nextStep() {
 
 
 }
+
+async function selectTime(){
+
+    console.log(selectedTimeSlot)
+
+
+}
+
+
+
+
 
 function date() {
     let dateContainer = document.getElementById("dateInputContainer")
@@ -126,6 +139,7 @@ function createTimeslots() {
             start.onclick = function () {
                 console.log("clicked on timeslot: " + start.textContent)
                 //selected timeslot = this timeslot
+                selectedTimeSlot = start.textContent
             }
             row.appendChild(start);
             timeslots.appendChild(row)
