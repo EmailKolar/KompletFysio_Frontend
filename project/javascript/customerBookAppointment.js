@@ -27,10 +27,11 @@ let treatmentTypeDropdown = document.getElementById("treatmentSelectionDropDown"
 //step 3 - choose employee
 let employeeList = []
 let selectedEmployeeId;
-let selectedDate;
 
 //step 4 - chose date/time
 let employeeAvailableWorkTimes = []
+let selectedDate;
+let selectedStartTime;
 
 //Fetches
 const fetchAllTreatmentsURL = "http://localhost:8080/allTreatments"
@@ -164,6 +165,7 @@ function createTimeslots() {
             allTimeSlots.forEach(slot => slot.classList.remove('timeslotBoxSelected'))
             start.classList.add('timeslotBoxSelected')
             enableContinueButton()
+            selectedStartTime = start.textContent;
         }
         singleTimeSlot.appendChild(start);
         row.appendChild(singleTimeSlot)
