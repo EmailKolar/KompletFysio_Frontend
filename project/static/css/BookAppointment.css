@@ -8,3 +8,44 @@
     width: 100%; /* or any desired width */
     margin: 3px;
 }
+.timeslotBox{
+    color: white;
+    display: block;
+    width: 100%; /* or any desired width */
+    padding: 7px;
+    /*cursor: pointer;*/
+    text-align: center;
+    border-radius: 10px;
+    background-color: #4d8f4e;
+}
+.timeslotBox:hover{
+    background-color: #64ab65;
+    cursor: pointer;
+}
+.timeslotBoxSelected{
+    background-color: #7ad57b;
+    border: 3px solid black;
+}
+.btnGreen{
+    background-color: #4d8f4e;
+    color: white;
+}
+.btnGreen:hover{
+    background-color: #7ad57b;
+    color: white;
+}
+.btnGreenSelected{
+    background-color: #7ad57b;
+    color: white;
+    border: 3px solid black;
+}
+.btnGrey{
+    background-color: #585958;
+    color: white;
+}
+.btnGrey:hover{
+    background-color: #838383;
+    color: white;
+}
+
+
