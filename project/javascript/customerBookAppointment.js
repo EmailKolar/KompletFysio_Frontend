@@ -27,11 +27,11 @@ let treatmentTypeDropdown = document.getElementById("treatmentSelectionDropDown"
 //step 3 - choose employee
 let employeeList = []
 let selectedEmployeeId;
-let selectedDate;
 
 //step 4 - chose date/time
 let employeeAvailableWorkTimes = []
-const tableBody = document.getElementById("timeslots")
+let selectedDate;
+let selectedStartTime;
 
 //Fetches
 const fetchAllTreatmentsURL = "http://localhost:8080/allTreatments"
@@ -91,6 +91,40 @@ async function nextStep() {
     progressBar.setAttribute('aria-valuenow', progress)
 }
 
+async function getFormattedTimes(){
+    let startTimeFormatted = timeFormatter(selectedDate, selectedStartTime)
+    let endTimeFormatted = timeFormatter(selectedDate,generateEndTime(selectedStartTime,selectedDuration))
+    console.log("start LocalDateTime: "+startTimeFormatted)
+    console.log("end LocalDateTime: "+endTimeFormatted)
+}
+
+function generateEndTime(time, minutes){
+
+    const [hours, originalMinutes] = time.split(':').map(Number);
+
+    const totalMinutes = hours * 60 + originalMinutes + minutes;
+
+    const newHours = Math.floor(totalMinutes / 60);
+    const newMinutes = totalMinutes % 60;
+
+    const formattedHours = String(newHours).padStart(2, '0');
+    const formattedMinutes = String(newMinutes).padStart(2, '0');
+
+    return `${formattedHours}:${formattedMinutes}`;
+
+}
+
+
+function timeFormatter(date, time){
+    const [year, month, day] = date.split('-');
+    let [hours, minutes] = time.split(':');
+
+    if(hours.length<=1) hours = "0"+ hours
+
+    return year + "-" + month + "-" + day + "T" + hours + ":" + minutes + ":00"
+}
+
+
 function date() {
     let dateContainer = document.getElementById("dateInputContainer")
     dateContainer.innerHTML = ""
@@ -131,6 +165,7 @@ function createTimeslots() {
             allTimeSlots.forEach(slot => slot.classList.remove('timeslotBoxSelected'))
             start.classList.add('timeslotBoxSelected')
             enableContinueButton()
+            selectedStartTime = start.textContent;
         }
         singleTimeSlot.appendChild(start);
         row.appendChild(singleTimeSlot)
