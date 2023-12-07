@@ -88,38 +88,306 @@
                         </div>
 
                         <div class="form-row mt-3">
-                            <div class="col-md-12">
+                            <div class="col-md-12 col-lg-8">
                                 <div class="form-group">
-                                    <label for="isPartnerCheckBox" class="formLabel">Indtast Kodeord:</label>
+                                    <label for="isPartnerCheckBox" class="formLabel">
+                                        Skal bruger oprettes som Partner?</label>
                                 </div>
                             </div>
-                            <div class="col-md-12">
+                            <div class="col-md-12 col-lg-4">
                                 <div class="form-group">
-                                    <input type="checkbox" class="form-control" id="isPartnerCheckBox"
-                                           name="isPartnerCheckBox" placeholder="Checkbox her...">
+                                    <input type="checkbox" class="form-check-input" id="isPartnerCheckBox"
+                                           name="isPartnerCheckBox">
+                                    <label class="form-check-label" for="isPartnerCheckBox">Ja</label>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="form-group">
-                            <button type="submit" class="btn btn-primary btn-block mt-3">Tilføj ny ansat</button>
+                        <div class="form-row mt-3">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="mondaySchedule" class="formLabel">Mandagsplan:</label>
+                                </div>
+                            </div>
+
+                            <div id="mondaySchedule" class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <select class="form-control" name="mondayStart">
+                                            <option disabled selected hidden>Vælg start tid:</option>
+                                            <option>07:00</option>
+                                            <option>08:00</option>
+                                            <option>09:00</option>
+                                            <option>10:00</option>
+                                            <option>11:00</option>
+                                            <option>12:00</option>
+                                            <option>13:00</option>
+                                            <option>14:00</option>
+                                            <option>15:00</option>
+                                            <option>16:00</option>
+                                            <option>17:00</option>
+                                            <option>18:00</option>
+                                            <option>19:00</option>
+                                            <option>20:00</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <select class="form-control" name="mondayEnd">
+                                            <option disabled selected hidden>Vælg slut tid:</option>
+                                            <option>07:00</option>
+                                            <option>08:00</option>
+                                            <option>09:00</option>
+                                            <option>10:00</option>
+                                            <option>11:00</option>
+                                            <option>12:00</option>
+                                            <option>13:00</option>
+                                            <option>14:00</option>
+                                            <option>15:00</option>
+                                            <option>16:00</option>
+                                            <option>17:00</option>
+                                            <option>18:00</option>
+                                            <option>19:00</option>
+                                            <option>20:00</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-row mt-3">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="tuesdaySchedule" class="formLabel">Tirsdagsplan:</label>
+                                    </div>
+                                </div>
+
+                                <div id="tuesdaySchedule" class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <select class="form-control" name="tuesdayStart">
+                                                <option disabled selected hidden>Vælg start tid:</option>
+                                                <option>07:00</option>
+                                                <option>08:00</option>
+                                                <option>09:00</option>
+                                                <option>10:00</option>
+                                                <option>11:00</option>
+                                                <option>12:00</option>
+                                                <option>13:00</option>
+                                                <option>14:00</option>
+                                                <option>15:00</option>
+                                                <option>16:00</option>
+                                                <option>17:00</option>
+                                                <option>18:00</option>
+                                                <option>19:00</option>
+                                                <option>20:00</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <select class="form-control" name="tuesdayEnd">
+                                                <option disabled selected hidden>Vælg slut tid:</option>
+                                                <option>07:00</option>
+                                                <option>08:00</option>
+                                                <option>09:00</option>
+                                                <option>10:00</option>
+                                                <option>11:00</option>
+                                                <option>12:00</option>
+                                                <option>13:00</option>
+                                                <option>14:00</option>
+                                                <option>15:00</option>
+                                                <option>16:00</option>
+                                                <option>17:00</option>
+                                                <option>18:00</option>
+                                                <option>19:00</option>
+                                                <option>20:00</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Wednesday Schedule -->
+                                <div class="form-row mt-3">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="wednesdaySchedule" class="formLabel">Onsdagsplan:</label>
+                                        </div>
+                                    </div>
+
+                                    <div id="wednesdaySchedule" class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <select class="form-control" name="wednesdayStart">
+                                                    <option disabled selected hidden>Vælg start tid:</option>
+                                                    <option>07:00</option>
+                                                    <option>08:00</option>
+                                                    <option>09:00</option>
+                                                    <option>10:00</option>
+                                                    <option>11:00</option>
+                                                    <option>12:00</option>
+                                                    <option>13:00</option>
+                                                    <option>14:00</option>
+                                                    <option>15:00</option>
+                                                    <option>16:00</option>
+                                                    <option>17:00</option>
+                                                    <option>18:00</option>
+                                                    <option>19:00</option>
+                                                    <option>20:00</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <select class="form-control" name="wednesdayEnd">
+                                                    <option disabled selected hidden>Vælg slut tid:</option>
+                                                    <option>07:00</option>
+                                                    <option>08:00</option>
+                                                    <option>09:00</option>
+                                                    <option>10:00</option>
+                                                    <option>11:00</option>
+                                                    <option>12:00</option>
+                                                    <option>13:00</option>
+                                                    <option>14:00</option>
+                                                    <option>15:00</option>
+                                                    <option>16:00</option>
+                                                    <option>17:00</option>
+                                                    <option>18:00</option>
+                                                    <option>19:00</option>
+                                                    <option>20:00</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Thursday Schedule -->
+                                <div class="form-row mt-3">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="thursdaySchedule" class="formLabel">Torsdagsplan:</label>
+                                        </div>
+                                    </div>
+
+                                    <div id="thursdaySchedule" class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <select class="form-control" name="thursdayStart">
+                                                    <option disabled selected hidden>Vælg start tid:</option>
+                                                    <option>07:00</option>
+                                                    <option>08:00</option>
+                                                    <option>09:00</option>
+                                                    <option>10:00</option>
+                                                    <option>11:00</option>
+                                                    <option>12:00</option>
+                                                    <option>13:00</option>
+                                                    <option>14:00</option>
+                                                    <option>15:00</option>
+                                                    <option>16:00</option>
+                                                    <option>17:00</option>
+                                                    <option>18:00</option>
+                                                    <option>19:00</option>
+                                                    <option>20:00</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <select class="form-control" name="thursdayEnd">
+                                                    <option disabled selected hidden>Vælg slut tid:</option>
+                                                    <option>07:00</option>
+                                                    <option>08:00</option>
+                                                    <option>09:00</option>
+                                                    <option>10:00</option>
+                                                    <option>11:00</option>
+                                                    <option>12:00</option>
+                                                    <option>13:00</option>
+                                                    <option>14:00</option>
+                                                    <option>15:00</option>
+                                                    <option>16:00</option>
+                                                    <option>17:00</option>
+                                                    <option>18:00</option>
+                                                    <option>19:00</option>
+                                                    <option>20:00</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Friday Schedule -->
+                                <div class="form-row mt-3">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="fridaySchedule" class="formLabel">Fredagsplan:</label>
+                                        </div>
+                                    </div>
+
+                                    <div id="fridaySchedule" class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <select class="form-control" name="fridayStart">
+                                                    <option disabled selected hidden>Vælg start tid:</option>
+                                                    <option>07:00</option>
+                                                    <option>08:00</option>
+                                                    <option>09:00</option>
+                                                    <option>10:00</option>
+                                                    <option>11:00</option>
+                                                    <option>12:00</option>
+                                                    <option>13:00</option>
+                                                    <option>14:00</option>
+                                                    <option>15:00</option>
+                                                    <option>16:00</option>
+                                                    <option>17:00</option>
+                                                    <option>18:00</option>
+                                                    <option>19:00</option>
+                                                    <option>20:00</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <select class="form-control" name="fridayEnd">
+                                                    <option disabled selected hidden>Vælg slut tid:</option>
+                                                    <option>07:00</option>
+                                                    <option>08:00</option>
+                                                    <option>09:00</option>
+                                                    <option>10:00</option>
+                                                    <option>11:00</option>
+                                                    <option>12:00</option>
+                                                    <option>13:00</option>
+                                                    <option>14:00</option>
+                                                    <option>15:00</option>
+                                                    <option>16:00</option>
+                                                    <option>17:30</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary btn-block mt-3">Tilføj ny ansat
+                                </button>
+                            </div>
                         </div>
                     </form>
                 </div>
             </div>
+        </div>
 
-            <!-- Højre kolonne til billedet -->
-            <div class="col-md-12 col-lg-6" style="background-color: lightgray">
+        <!-- Højre kolonne til billedet -->
+        <div class="col-md-12 col-lg-6" style="background-color: lightgray">
 
-                <!-- Billede eller indhold -->
-
-            </div>
+            <!-- Billede eller indhold -->
 
         </div>
+
     </div>
+</div>
 
 
-    <div id="footerContent"></div>
+<div id="footerContent"></div>
 
 </body>
 </html>
