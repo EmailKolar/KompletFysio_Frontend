@@ -1,6 +1,6 @@
 let firstName = document.getElementById("firstNameInput");
 let lastName = document.getElementById("lastNameInput")
-let usernamer = document.getElementById("usernameInput")
+let username = document.getElementById("usernameInput")
 let password = document.getElementById("passwordInput")
 let isPartner = document.getElementById("isPartnerCheckBox")
 
@@ -9,7 +9,7 @@ function saveEmployee() {
     const data = {
         firstName: firstName,
         lastName: lastName,
-        username: usernamer,
+        username: username,
         password: password,
         isPartner: isPartner
     }
