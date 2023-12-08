@@ -129,7 +129,7 @@ function saveAppointment() {
             console.log("Appointment added: " + data)
         })
         .catch(error => {
-            console.error("Error saving customer: " + error)
+            console.error("Error saving Appointment: " + error)
         });
 }
 
