@@ -17,6 +17,9 @@ let fysioList = []
 let pregnantList = []
 let lungList = []
 
+//step 1 - customer login
+let customerId = 1
+
 //step 2 - choose treatment
 let selectedTreatmentId;
 let selectedDuration;
@@ -29,14 +32,18 @@ let employeeList = []
 let selectedEmployeeId;
 
 //step 4 - chose date/time
+const tableBody = document.getElementById("timeslots")
 let employeeAvailableWorkTimes = []
 let selectedDate;
 let selectedStartTime;
+let formatedStartTime;
+let formatedEndTime;
 
 //Fetches
 const fetchAllTreatmentsURL = "http://localhost:8080/allTreatments"
 const fetchEmployeesWithTreatmentIdURL = "http://localhost:8080/getEmployeeByTreatmentId/"
 const fetchEmployeeTimeSlotsURL = "http://localhost:8080/getEmployeeHoursById/"
+const fetchSaveAppointmentURL = "http://localhost:8080/appointment"
 
 async function nextStep() {
 
@@ -74,6 +81,8 @@ async function nextStep() {
             date()
             break
         case 5:
+            await getFormattedTimes()
+            saveAppointment()
             modalTitle.innerHTML = "Færdig"
             cancelBtn.style.display = 'none'
             continueBtn.style.display = 'none'
@@ -91,14 +100,47 @@ async function nextStep() {
     progressBar.setAttribute('aria-valuenow', progress)
 }
 
-async function getFormattedTimes(){
-    let startTimeFormatted = timeFormatter(selectedDate, selectedStartTime)
-    let endTimeFormatted = timeFormatter(selectedDate,generateEndTime(selectedStartTime,selectedDuration))
-    console.log("start LocalDateTime: "+startTimeFormatted)
-    console.log("end LocalDateTime: "+endTimeFormatted)
+function saveAppointment() {
+    //pack up the json response
+    const data = {
+        startTime: formatedStartTime,
+        endtime: formatedEndTime,
+        note: "",
+        customerId: customerId,
+        employeeId: selectedEmployeeId,
+        treatmentId: selectedTreatmentId
+    }
+    const body = JSON.stringify(data)
+    console.log(body)
+    fetch(fetchSaveAppointmentURL, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: body
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok')
+            }
+            return response.json()
+        })
+        .then(data => {
+            console.log("Appointment added: " + data)
+        })
+        .catch(error => {
+            console.error("Error saving customer: " + error)
+        });
 }
 
-function generateEndTime(time, minutes){
+async function getFormattedTimes() {
+    formatedStartTime = timeFormatter(selectedDate, selectedStartTime)
+    formatedEndTime = timeFormatter(selectedDate, generateEndTime(selectedStartTime, selectedDuration))
+    console.log("start LocalDateTime: " + formatedStartTime)
+    console.log("end LocalDateTime: " + formatedEndTime)
+}
+
+function generateEndTime(time, minutes) {
 
     const [hours, originalMinutes] = time.split(':').map(Number);
 
@@ -115,11 +157,11 @@ function generateEndTime(time, minutes){
 }
 
 
-function timeFormatter(date, time){
+function timeFormatter(date, time) {
     const [year, month, day] = date.split('-');
     let [hours, minutes] = time.split(':');
 
-    if(hours.length<=1) hours = "0"+ hours
+    if (hours.length <= 1) hours = "0" + hours
 
     return year + "-" + month + "-" + day + "T" + hours + ":" + minutes + ":00"
 }
@@ -157,15 +199,20 @@ function createTimeslots() {
         singleTimeSlot.style.width = "100%"
         const start = document.createElement('td')
         start.classList.add("timeslotBox")
-        start.textContent = employeeAvailableWorkTimes[i]
+        start.textContent = employeeAvailableWorkTimes[i].timeSlot
 
         start.onclick = function () {
             console.log("clicked on timeslot: " + start.textContent)
             const allTimeSlots = document.querySelectorAll('.timeslotBox')
             allTimeSlots.forEach(slot => slot.classList.remove('timeslotBoxSelected'))
             start.classList.add('timeslotBoxSelected')
+            selectedStartTime = employeeAvailableWorkTimes[i].timeSlot
             enableContinueButton()
-            selectedStartTime = start.textContent;
+            //when customer presses "Vilkårlig behandler"
+            // The selectedEmployeeId is set to the one corresponding with the timeslot
+            if (selectedEmployeeId < 0) {
+                selectedEmployeeId = employeeAvailableWorkTimes[i].employeeId
+            }
         }
         singleTimeSlot.appendChild(start);
         row.appendChild(singleTimeSlot)
@@ -341,6 +388,7 @@ async function fetchCapableEmployees() {
 }
 
 function fetchEmployeeAvailableTimeSlots() {
+    employeeAvailableWorkTimes = []
     fetch(fetchEmployeeTimeSlotsURL + selectedEmployeeId + "/" + selectedDate + "/" + selectedDuration)
         .then(result => {
             if (result >= 400) {
@@ -349,6 +397,7 @@ function fetchEmployeeAvailableTimeSlots() {
             return result.json()
         }).then(body => {
         employeeAvailableWorkTimes = body;
+        // employeeAvailableWorkTimes = body.map(object => object.timeSlot);
         console.log(employeeAvailableWorkTimes)
         createTimeslots()
     })
