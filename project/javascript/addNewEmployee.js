@@ -15,7 +15,7 @@ function saveEmployee() {
     }
     const body = JSON.stringify(data)
     console.log(body)
-    fetch(fetchSaveAppointmentURL, {
+    fetch("http://localhost:8080/addNewEmployee", {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
