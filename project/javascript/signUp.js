@@ -4,7 +4,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
-const fetchUrl = "http://localhost:8080/saveCustomer"
+const signUpUrl = "http://localhost:8080/saveCustomer"
+const logInUrl = "http://localhost:8080/logInCustomer"
 
 
 document.getElementById("signupForm").addEventListener("submit", function(event) {
@@ -20,9 +21,7 @@ document.getElementById("signupForm").addEventListener("submit", function(event)
     let username = document.getElementById("usernameFieldSignup").value;
     let password = document.getElementById("passwordFieldSignup").value;
 
-
-
-   let  bodylist = {
+    let  bodylist = {
        customerId : 1,
        firstName : fname,
        lastName : lname,
@@ -33,28 +32,44 @@ document.getElementById("signupForm").addEventListener("submit", function(event)
        city : city,
        username : username,
        password : password
-   }
+    }
 
    let body = JSON.stringify(bodylist)
 
-    console.log(body)
-
-
-    fetch(fetchUrl,{
-        method: "POST",
-        body : body,
-        headers:{
-            "Content-Type": "application/json"
-        }
-    })
-        .then(response => response.json())
-        .then(data => {
-            console.log(data);
-        })
-        .catch(error => {
-            console.error("Error:", error);
-        });
+    myFetch(signUpUrl,body)
 
 })
+    document.getElementById("loginForm").addEventListener("submit", function(event) {
+        event.preventDefault();
+        let username = document.getElementById("usernameFieldSignup").value;
+        let password = document.getElementById("passwordFieldSignup").value;
 
+        let  bodylist = {
+            username : username,
+            password : password
+        }
+
+        let body = JSON.stringify(bodylist)
+
+        myFetch(logInUrl,body)
+
+    })
+
+    function myFetch(fetchUrl,body){
+        fetch(fetchUrl,{
+            method: "POST",
+            body : body,
+            headers:{
+                "Content-Type": "application/json"
+            }
+        })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+            })
+            .catch(error => {
+                console.error("Error:", error);
+            });
+
+    }
 })
