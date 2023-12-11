@@ -4,14 +4,16 @@ let username = document.getElementById("usernameInput")
 let password = document.getElementById("passwordInput")
 let isPartner = document.getElementById("isPartnerCheckBox")
 
+
 function saveEmployee() {
+
     //pack up the json response
     const data = {
-        firstName: firstName,
-        lastName: lastName,
-        username: username,
-        password: password,
-        isPartner: isPartner
+        firstName: firstName.value,
+        lastName: lastName.value,
+        username: username.value,
+        password: password.value,
+        isPartner: isPartner.value
     }
     const body = JSON.stringify(data)
     console.log(body)
@@ -34,4 +36,5 @@ function saveEmployee() {
         .catch(error => {
             console.error("Error saving Appointment: " + error)
         });
+    event.preventDefault()
 }
