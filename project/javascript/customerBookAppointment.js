@@ -43,6 +43,7 @@ let formatedEndTime;
 const fetchAllTreatmentsURL = "http://localhost:8080/allTreatments"
 const fetchEmployeesWithTreatmentIdURL = "http://localhost:8080/getEmployeeByTreatmentId/"
 const fetchEmployeeTimeSlotsURL = "http://localhost:8080/getEmployeeHoursById/"
+const fetchAnyEmployeeTimeSlotsURL = "http://localhost:8080/getAnyEmployeeHours/"
 const fetchSaveAppointmentURL = "http://localhost:8080/appointment"
 
 async function nextStep() {
@@ -388,8 +389,16 @@ async function fetchCapableEmployees() {
 }
 
 function fetchEmployeeAvailableTimeSlots() {
+    //getAnyEmployeeHours/{date}/{duration}/{treatmentId}
+    let fetchUrl
+    if (selectedEmployeeId > 0){
+        fetchUrl = fetchEmployeeTimeSlotsURL + selectedEmployeeId + "/" + selectedDate + "/" + selectedDuration
+    }else {
+        fetchUrl = fetchAnyEmployeeTimeSlotsURL + selectedDate + "/" + selectedDuration + "/" + selectedTreatmentId
+    }
+
     employeeAvailableWorkTimes = []
-    fetch(fetchEmployeeTimeSlotsURL + selectedEmployeeId + "/" + selectedDate + "/" + selectedDuration)
+    fetch(fetchUrl)
         .then(result => {
             if (result >= 400) {
                 throw new Error();
