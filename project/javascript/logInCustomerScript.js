@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         let body = JSON.stringify(bodylist)
 
-        fetch(logInUrl + "/"+username+"/"+password,{
+        fetch(logInUrl ,{
             method : "POST",
             headers:{
                 "Conten-Type": "application/json"
