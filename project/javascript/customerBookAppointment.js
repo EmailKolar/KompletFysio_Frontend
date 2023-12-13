@@ -19,6 +19,8 @@ let lungList = []
 
 //step 1 - customer login
 let customerId = 1
+document.getElementById("formSubmitSignup").addEventListener("click", signUpFetch)
+document.getElementById("logInformSubmit").addEventListener("click", logInFetch)
 
 //step 2 - choose treatment
 let selectedTreatmentId;
@@ -60,7 +62,7 @@ async function nextStep() {
 
         case 1:
             modalTitle.innerHTML = "Log ind eller Opret"
-            disableContinueButton()
+            // disableContinueButton()
             //logic for customer login or customer Registration
             // signUpFetch()
             // logInFetch()
@@ -398,9 +400,9 @@ async function fetchCapableEmployees() {
 function fetchEmployeeAvailableTimeSlots() {
     //getAnyEmployeeHours/{date}/{duration}/{treatmentId}
     let fetchUrl
-    if (selectedEmployeeId > 0){
+    if (selectedEmployeeId > 0) {
         fetchUrl = fetchEmployeeTimeSlotsURL + selectedEmployeeId + "/" + selectedDate + "/" + selectedDuration
-    }else {
+    } else {
         fetchUrl = fetchAnyEmployeeTimeSlotsURL + selectedDate + "/" + selectedDuration + "/" + selectedTreatmentId
     }
 
@@ -419,7 +421,8 @@ function fetchEmployeeAvailableTimeSlots() {
     })
 }
 
-function signUpFetch(){
+function signUpFetch() {
+    event.preventDefault()
 
     let fname = document.getElementById("fnameField").value;
     let lname = document.getElementById("lnameField").value;
@@ -431,30 +434,33 @@ function signUpFetch(){
     let username = document.getElementById("usernameFieldSignup").value;
     let password = document.getElementById("passwordFieldSignup").value;
 
-    let  bodylist = {
-        customerId : 1,
-        firstName : fname,
-        lastName : lname,
-        dateOfBirth : dob,
-        cpr : cpr,
-        address : address,
-        zipCode : post,
-        city : city,
-        username : username,
-        password : password
+    let bodylist = {
+        customerId: 1,
+        firstName: fname,
+        lastName: lname,
+        dateOfBirth: dob,
+        cpr: cpr,
+        address: address,
+        zipCode: post,
+        city: city,
+        username: username,
+        password: password
     }
 
     let body = JSON.stringify(bodylist)
-    fetch(signUpFetchURL,{
+    fetch(signUpFetchURL, {
         method: "POST",
-        body : body,
-        headers:{
+        body: body,
+        headers: {
             "Content-Type": "application/json"
         }
     })
         .then(response => response.json())
         .then(data => {
-            console.log(data);//TODO
+            console.log("Signup success")
+            customerId = data.customerId
+            closeSignUpAndLoginModals()
+            nextStep()
         })
         .catch(error => {
             console.error("Error:", error);
@@ -463,31 +469,47 @@ function signUpFetch(){
 
 }
 
-function logInFetch(){
+function logInFetch() {
+    event.preventDefault()
     let username = document.getElementById("usernameFieldLogIn").value;
     let password = document.getElementById("passwordFieldLogIn").value;
 
-    let  bodylist = {
-        username : username,
-        password : password
+    let bodylist = {
+        username: username,
+        password: password
     }
 
     let body = JSON.stringify(bodylist)
 
-    fetch(logInURL ,{
-        method : "POST",
-        body : body,
-        headers:{
-            "Content-Type": "application/json"
-        }
+    fetch(logInURL, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: body
     })
-        .then(response => response.json())
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok')
+            }
+            return response.json()
+        })
         .then(data => {
-            console.log(data)
+            console.log("Log in success: " + data.cpr)
+            customerId = data.customerId
+            closeSignUpAndLoginModals()
+            nextStep()
         })
-        .catch(error =>{
-            console.error("err: ", error)
-        })
+        .catch(error => {
+            console.error("Error loggind in: " + error)
+        });
+}
+function closeSignUpAndLoginModals(){
+    let modal1 = document.getElementById("signupModal")
+    modal1.style.display = "none"
+
+    let modal2 = document.getElementById("logInModal")
+    modal2.style.display = "none"
 }
 
 
