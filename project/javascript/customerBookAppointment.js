@@ -62,8 +62,8 @@ async function nextStep() {
             modalTitle.innerHTML = "Log ind eller Opret"
             disableContinueButton()
             //logic for customer login or customer Registration
-            signUpFetch()
-            logInFetch()
+            // signUpFetch()
+            // logInFetch()
 
             break
         case 2:
@@ -476,6 +476,7 @@ function logInFetch(){
 
     fetch(logInURL ,{
         method : "POST",
+        body : body,
         headers:{
             "Content-Type": "application/json"
         }
