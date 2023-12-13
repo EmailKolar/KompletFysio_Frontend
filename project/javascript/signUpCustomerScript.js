@@ -30,11 +30,11 @@ document.getElementById("signupForm").addEventListener("submit", function(event)
 
    let body = JSON.stringify(bodylist)
 
-    myFetch(signUpUrl,body)
+    signUpFetch(signUpUrl,body)
 
 })
 
-    function myFetch(fetchUrl,body){
+    function signUpFetch(fetchUrl,body){
         fetch(fetchUrl,{
             method: "POST",
             body : body,

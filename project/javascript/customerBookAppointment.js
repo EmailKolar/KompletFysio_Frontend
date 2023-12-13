@@ -45,6 +45,9 @@ const fetchEmployeesWithTreatmentIdURL = "http://localhost:8080/getEmployeeByTre
 const fetchEmployeeTimeSlotsURL = "http://localhost:8080/getEmployeeHoursById/"
 const fetchAnyEmployeeTimeSlotsURL = "http://localhost:8080/getAnyEmployeeHours/"
 const fetchSaveAppointmentURL = "http://localhost:8080/appointment"
+const signUpFetchURL = "http://localhost:8080/saveCustomer"
+const logInURL = "http://localhost:8080/logInCustomer"
+
 
 async function nextStep() {
 
@@ -59,6 +62,9 @@ async function nextStep() {
             modalTitle.innerHTML = "Log ind eller Opret"
             disableContinueButton()
             //logic for customer login or customer Registration
+            signUpFetch()
+            logInFetch()
+
             break
         case 2:
             modalTitle.innerHTML = "Vælg Behandling"
@@ -411,6 +417,76 @@ function fetchEmployeeAvailableTimeSlots() {
         console.log(employeeAvailableWorkTimes)
         createTimeslots()
     })
+}
+
+function signUpFetch(){
+
+    let fname = document.getElementById("fnameField").value;
+    let lname = document.getElementById("lnameField").value;
+    let dob = document.getElementById("dobField").value;
+    let cpr = document.getElementById("cprField").value;
+    let address = document.getElementById("addressField").value;
+    let post = document.getElementById("post").value;
+    let city = document.getElementById("cityField").value;
+    let username = document.getElementById("usernameFieldSignup").value;
+    let password = document.getElementById("passwordFieldSignup").value;
+
+    let  bodylist = {
+        customerId : 1,
+        firstName : fname,
+        lastName : lname,
+        dateOfBirth : dob,
+        cpr : cpr,
+        address : address,
+        zipCode : post,
+        city : city,
+        username : username,
+        password : password
+    }
+
+    let body = JSON.stringify(bodylist)
+    fetch(signUpFetchURL,{
+        method: "POST",
+        body : body,
+        headers:{
+            "Content-Type": "application/json"
+        }
+    })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);//TODO
+        })
+        .catch(error => {
+            console.error("Error:", error);
+        });
+
+
+}
+
+function logInFetch(){
+    let username = document.getElementById("usernameFieldLogIn").value;
+    let password = document.getElementById("passwordFieldLogIn").value;
+
+    let  bodylist = {
+        username : username,
+        password : password
+    }
+
+    let body = JSON.stringify(bodylist)
+
+    fetch(logInURL ,{
+        method : "POST",
+        headers:{
+            "Content-Type": "application/json"
+        }
+    })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data)
+        })
+        .catch(error =>{
+            console.error("err: ", error)
+        })
 }
 
 
