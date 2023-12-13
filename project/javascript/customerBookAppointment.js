@@ -56,7 +56,8 @@ async function nextStep() {
     switch (currentStep) {
 
         case 1:
-            modalTitle.innerHTML = "Login eller Opret"
+            modalTitle.innerHTML = "Log ind eller Opret"
+            disableContinueButton()
             //logic for customer login or customer Registration
             break
         case 2:
