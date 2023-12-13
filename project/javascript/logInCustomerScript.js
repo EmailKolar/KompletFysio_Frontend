@@ -5,8 +5,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     document.getElementById("loginForm").addEventListener("submit", function(event) {
         event.preventDefault();
-        let username = document.getElementById("usernameFieldSignup").value;
-        let password = document.getElementById("passwordFieldSignup").value;
+        let username = document.getElementById("usernameFieldLogIn").value;
+        let password = document.getElementById("passwordFieldLogIn").value;
 
         let  bodylist = {
             username : username,
