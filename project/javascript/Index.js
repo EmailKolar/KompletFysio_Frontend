@@ -18,3 +18,12 @@ fetch('footer.html')
     .catch(error => {
         console.log('Fejl ved indlæsning af footer:', error);
     });
+
+fetch("header.html")
+    .then(respons => respons.text())
+    .then(data => {
+        document.getElementById("headerContent").innerHTML = data;
+    })
+    .catch(error => {
+        console.log('Fejl ved indlæsning af header:', error);
+    })
