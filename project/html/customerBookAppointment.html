@@ -51,7 +51,124 @@
 
                 <!-- Log In Customer -->
                 <div id="step1Content" style="display: none;">
-                    Step 1: Log ind customer ELLER Opret customer
+
+                    <div class="d-flex justify-content-evenly">
+                        <button type="button" class="btn btnGreen" data-toggle="modal" data-target="#signupModal">
+                            Opret Bruger
+                        </button>
+
+                        <button type="button" class="btn btnGreen" data-toggle="modal" data-target="#logInModal">
+                            Log Ind
+                        </button>
+                    </div>
+                    <!--Sign Up Modal-->
+                    <div class="modal fade" id="signupModal" tabindex="-1" role="dialog"
+                         aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-fullscreen-sm-down" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header d-flex justify-content-center">
+                                    <h5 class="modal-title">Opret Bruger</h5>
+
+                                </div>
+                                <div class="modal-body">
+                                    <form id="signupForm">
+                                        <div class="form-group">
+                                            <label for="fnameField">Fornavn</label>
+                                            <input type="text" class="form-control" id="fnameField" placeholder=""
+                                                   required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="lnameField">Efternavn</label>
+                                            <input type="text" class="form-control" id="lnameField" placeholder=""
+                                                   required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="dobField">Fødselsdag</label>
+                                            <input type="date" class="form-control" id="dobField" placeholder=""
+                                                   required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="addressField">Adresse</label>
+                                            <input type="text" class="form-control" id="addressField"
+                                                   placeholder="Byvej 2" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="post">Postnummer</label>
+                                            <input type="text" class="form-control" id="post" maxlength="4" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="cityField">By</label>
+                                            <input type="text" class="form-control" id="cityField" placeholder=""
+                                                   required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="cprField">CPR-nummer</label>
+                                            <input type="text" class="form-control" id="cprField" placeholder=""
+                                                   required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="usernameFieldSignup">Brugernavn</label>
+                                            <input type="text" id="usernameFieldSignup" class="form-control" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="passwordFieldSignup">Kode</label>
+                                            <input type="password" class="form-control" id="passwordFieldSignup"
+                                                   placeholder="" required>
+                                        </div>
+                                        <br>
+
+
+                                        <div class="modal-footer justify-content-between">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Luk
+                                            </button>
+                                            <div class="form-group">
+                                                <input type="submit" class="btn btnGreen" value="Sign up" data-toggle="modal" data-target="#signupModal"
+                                                       id="formSubmitSignup"onclick="signUpFetch()">
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--LogIn Modal-->
+                    <div class="modal fade" id="logInModal" tabindex="-1" role="dialog"
+                         aria-labelledby="exampleModalLabel" aria-hidden="true"
+                         data-bs-backdrop="static" data-bs-keyboard="false">
+                        <div class="modal-dialog modal-fullscreen-sm-down" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header d-flex justify-content-center">
+                                    <h5 class="modal-title" id="exampleModalLabel">Log ind</h5>
+                                </div>
+                                <div class="modal-body">
+                                    <form id="loginForm">
+                                        <div class="form-group">
+                                            <label for="usernameFieldLogIn">Brugernavn</label>
+                                            <input type="text" id="usernameFieldLogIn" placeholder="Brugernavn"
+                                                   class="form-control" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="passwordFieldLogIn">Kode</label>
+                                            <input type="password" class="form-control" placeholder="Kode"
+                                                   id="passwordFieldLogIn"
+                                                   placeholder="" required>
+                                        </div>
+                                        <br>
+
+                                        <div class="modal-footer d-flex justify-content-between">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Luk
+                                            </button>
+                                            <div class="form-group">
+                                                <input type="submit" class="btn btnGreen" value="Log ind" data-toggle="modal" data-target="#logInModal"
+                                                       id="logInformSubmit" onclick="logInFetch()">
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- Choose Employee -->
@@ -142,5 +259,12 @@
 </div>
 
 </body>
+
+
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
 <script src="../javascript/customerBookAppointment.js"></script>
 </html>

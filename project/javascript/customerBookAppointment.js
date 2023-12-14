@@ -45,6 +45,9 @@ const fetchEmployeesWithTreatmentIdURL = "http://localhost:8080/getEmployeeByTre
 const fetchEmployeeTimeSlotsURL = "http://localhost:8080/getEmployeeHoursById/"
 const fetchAnyEmployeeTimeSlotsURL = "http://localhost:8080/getAnyEmployeeHours/"
 const fetchSaveAppointmentURL = "http://localhost:8080/appointment"
+const signUpFetchURL = "http://localhost:8080/saveCustomer"
+const logInURL = "http://localhost:8080/logInCustomer"
+
 
 async function nextStep() {
 
@@ -56,7 +59,8 @@ async function nextStep() {
     switch (currentStep) {
 
         case 1:
-            modalTitle.innerHTML = "Login eller Opret"
+            modalTitle.innerHTML = "Log ind eller Opret"
+            disableContinueButton()
             //logic for customer login or customer Registration
             break
         case 2:
@@ -391,9 +395,9 @@ async function fetchCapableEmployees() {
 function fetchEmployeeAvailableTimeSlots() {
     //getAnyEmployeeHours/{date}/{duration}/{treatmentId}
     let fetchUrl
-    if (selectedEmployeeId > 0){
+    if (selectedEmployeeId > 0) {
         fetchUrl = fetchEmployeeTimeSlotsURL + selectedEmployeeId + "/" + selectedDate + "/" + selectedDuration
-    }else {
+    } else {
         fetchUrl = fetchAnyEmployeeTimeSlotsURL + selectedDate + "/" + selectedDuration + "/" + selectedTreatmentId
     }
 
@@ -410,6 +414,97 @@ function fetchEmployeeAvailableTimeSlots() {
         console.log(employeeAvailableWorkTimes)
         createTimeslots()
     })
+}
+
+function signUpFetch() {
+    event.preventDefault()
+
+    let fname = document.getElementById("fnameField").value;
+    let lname = document.getElementById("lnameField").value;
+    let dob = document.getElementById("dobField").value;
+    let cpr = document.getElementById("cprField").value;
+    let address = document.getElementById("addressField").value;
+    let post = document.getElementById("post").value;
+    let city = document.getElementById("cityField").value;
+    let username = document.getElementById("usernameFieldSignup").value;
+    let password = document.getElementById("passwordFieldSignup").value;
+
+    let bodylist = {
+        customerId: 1,
+        firstName: fname,
+        lastName: lname,
+        dateOfBirth: dob,
+        cpr: cpr,
+        address: address,
+        zipCode: post,
+        city: city,
+        username: username,
+        password: password
+    }
+
+    let body = JSON.stringify(bodylist)
+    fetch(signUpFetchURL, {
+        method: "POST",
+        body: body,
+        headers: {
+            "Content-Type": "application/json"
+        }
+    })
+        .then(response => response.json())
+        .then(data => {
+            console.log("Signup success")
+            customerId = data.customerId
+            closeSignUpAndLoginModals()
+            nextStep()
+        })
+        .catch(error => {
+            console.error("Error:", error);
+        });
+
+
+}
+
+function logInFetch() {
+    event.preventDefault()
+    let username = document.getElementById("usernameFieldLogIn").value;
+    let password = document.getElementById("passwordFieldLogIn").value;
+
+    let bodylist = {
+        username: username,
+        password: password
+    }
+
+    let body = JSON.stringify(bodylist)
+
+    fetch(logInURL, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: body
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok')
+            }
+            return response.json()
+        })
+        .then(data => {
+            console.log("Log in success: " + data.cpr)
+            customerId = data.customerId
+            closeSignUpAndLoginModals()
+            nextStep()
+        })
+        .catch(error => {
+            console.error("Error loggind in: " + error)
+        });
+}
+function closeSignUpAndLoginModals(){
+    let modal1 = document.getElementById("signupModal")
+    modal1.style.display = "none"
+
+    let modal2 = document.getElementById("logInModal")
+    modal2.style.display = "none"
 }
 
 
