@@ -19,8 +19,6 @@ let lungList = []
 
 //step 1 - customer login
 let customerId = 1
-document.getElementById("formSubmitSignup").addEventListener("click", signUpFetch)
-document.getElementById("logInformSubmit").addEventListener("click", logInFetch)
 
 //step 2 - choose treatment
 let selectedTreatmentId;
