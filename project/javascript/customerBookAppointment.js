@@ -40,14 +40,22 @@ let formatedStartTime;
 let formatedEndTime;
 
 //Fetches
-const fetchAllTreatmentsURL = "http://localhost:8080/allTreatments"
-const fetchEmployeesWithTreatmentIdURL = "http://localhost:8080/getEmployeeByTreatmentId/"
-const fetchEmployeeTimeSlotsURL = "http://localhost:8080/getEmployeeHoursById/"
-const fetchAnyEmployeeTimeSlotsURL = "http://localhost:8080/getAnyEmployeeHours/"
-const fetchSaveAppointmentURL = "http://localhost:8080/appointment"
-const signUpFetchURL = "http://localhost:8080/saveCustomer"
-const logInURL = "http://localhost:8080/logInCustomer"
+//For Local
+// const fetchAllTreatmentsURL = "http://localhost:8080/allTreatments"
+// const fetchEmployeesWithTreatmentIdURL = "http://localhost:8080/getEmployeeByTreatmentId/"
+// const fetchEmployeeTimeSlotsURL = "http://localhost:8080/getEmployeeHoursById/"
+// const fetchAnyEmployeeTimeSlotsURL = "http://localhost:8080/getAnyEmployeeHours/"
+// const fetchSaveAppointmentURL = "http://localhost:8080/appointment"
+// const signUpFetchURL = "http://localhost:8080/saveCustomer"
+// const logInURL = "http://localhost:8080/logInCustomer"
 
+const fetchAllTreatmentsURL = "https://kompletfysiobackend.azurewebsites.net/allTreatments"
+const fetchEmployeesWithTreatmentIdURL = "https://kompletfysiobackend.azurewebsites.net/getEmployeeByTreatmentId/"
+const fetchEmployeeTimeSlotsURL = "https://kompletfysiobackend.azurewebsites.net/getEmployeeHoursById/"
+const fetchAnyEmployeeTimeSlotsURL = "https://kompletfysiobackend.azurewebsites.net/getAnyEmployeeHours/"
+const fetchSaveAppointmentURL = "https://kompletfysiobackend.azurewebsites.net/appointment"
+const signUpFetchURL = "https://kompletfysiobackend.azurewebsites.net/saveCustomer"
+const logInURL = "https://kompletfysiobackend.azurewebsites.net/logInCustomer"
 
 async function nextStep() {
 
