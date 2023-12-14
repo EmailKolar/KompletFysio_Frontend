@@ -129,6 +129,245 @@
 <div class="bannerContainer">
 
 </div>
+<div class="modal fade" id="newAppointmentModal" data-bs-backdrop="static" data-bs-keyboard="false"
+     aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-fullscreen-sm-down">
 
+        <div class="modal-content">
+
+            <div class="modal-header d-flex justify-content-center">
+
+                <h5 class="modal-title" id="staticBackdropLabel">Book Tid</h5>
+                <!--button underneath is the X close button-->
+                <!--<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
+
+            </div>
+            <!--progress bar underneath-->
+            <div style="padding: 10px">
+                <div class="progress mt-3">
+                    <div class="progress-bar" role="progressbar" style="width: 0%;background-color: #6564ab"
+                         aria-valuenow="0" aria-valuemin="0"
+                         aria-valuemax="100"></div>
+                </div>
+            </div>
+
+            <div class="modal-body">
+
+                <div id="step0Content">
+                    <div style="text-align: center">
+                        <p>Tak fordi du vil booke en tid hos os!</p>
+                        <p>Tryk Fortsæt</p>
+                    </div>
+
+                </div>
+
+                <!-- Log In Customer -->
+                <div id="step1Content" style="display: none;">
+
+                    <div class="d-flex justify-content-evenly">
+                        <button type="button" class="btn btnGreen" data-toggle="modal" data-target="#signupModal">
+                            Opret Bruger
+                        </button>
+
+                        <button type="button" class="btn btnGreen" data-toggle="modal" data-target="#logInModal">
+                            Log Ind
+                        </button>
+                    </div>
+                    <!--Sign Up Modal-->
+                    <div class="modal fade" id="signupModal" tabindex="-1" role="dialog"
+                         aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-fullscreen-sm-down" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header d-flex justify-content-center">
+                                    <h5 class="modal-title">Opret Bruger</h5>
+
+                                </div>
+                                <div class="modal-body">
+                                    <form id="signupForm">
+                                        <div class="form-group">
+                                            <label for="fnameField">Fornavn</label>
+                                            <input type="text" class="form-control" id="fnameField" placeholder=""
+                                                   required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="lnameField">Efternavn</label>
+                                            <input type="text" class="form-control" id="lnameField" placeholder=""
+                                                   required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="dobField">Fødselsdag</label>
+                                            <input type="date" class="form-control" id="dobField" placeholder=""
+                                                   required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="addressField">Adresse</label>
+                                            <input type="text" class="form-control" id="addressField"
+                                                   placeholder="Byvej 2" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="post">Postnummer</label>
+                                            <input type="text" class="form-control" id="post" maxlength="4" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="cityField">By</label>
+                                            <input type="text" class="form-control" id="cityField" placeholder=""
+                                                   required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="cprField">CPR-nummer</label>
+                                            <input type="text" class="form-control" id="cprField" placeholder=""
+                                                   required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="usernameFieldSignup">Brugernavn</label>
+                                            <input type="text" id="usernameFieldSignup" class="form-control" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="passwordFieldSignup">Kode</label>
+                                            <input type="password" class="form-control" id="passwordFieldSignup"
+                                                   placeholder="" required>
+                                        </div>
+                                        <br>
+
+
+                                        <div class="modal-footer justify-content-between">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Luk
+                                            </button>
+                                            <div class="form-group">
+                                                <input type="submit" class="btn btnGreen" value="Sign up" data-toggle="modal" data-target="#signupModal"
+                                                       id="formSubmitSignup"onclick="signUpFetch()">
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--LogIn Modal-->
+                    <div class="modal fade" id="logInModal" tabindex="-1" role="dialog"
+                         aria-labelledby="exampleModalLabel" aria-hidden="true"
+                         data-bs-backdrop="static" data-bs-keyboard="false">
+                        <div class="modal-dialog modal-fullscreen-sm-down" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header d-flex justify-content-center">
+                                    <h5 class="modal-title" id="exampleModalLabel">Log ind</h5>
+                                </div>
+                                <div class="modal-body">
+                                    <form id="loginForm">
+                                        <div class="form-group">
+                                            <label for="usernameFieldLogIn">Brugernavn</label>
+                                            <input type="text" id="usernameFieldLogIn" placeholder="Brugernavn"
+                                                   class="form-control" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="passwordFieldLogIn">Kode</label>
+                                            <input type="password" class="form-control" placeholder="Kode"
+                                                   id="passwordFieldLogIn"
+                                                   placeholder="" required>
+                                        </div>
+                                        <br>
+
+                                        <div class="modal-footer d-flex justify-content-between">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Luk
+                                            </button>
+                                            <div class="form-group">
+                                                <input type="submit" class="btn btnGreen" value="Log ind" data-toggle="modal" data-target="#logInModal"
+                                                       id="logInformSubmit" onclick="logInFetch()">
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Choose Employee -->
+                <div id="step2Content" style="display: none;">
+                    <div class="container">
+
+                        <div class="col">
+                            <div class="dropdown">
+                                <button type="button" class="btn btnGreen dropdown-toggle dropdownButton"
+                                        data-bs-toggle="dropdown" id="treatmentTypeButton">
+                                    Vælg Behandlings Type
+                                </button>
+                                <ul class="dropdown-menu" style="width: 100%;cursor: pointer">
+                                    <li class="dropdown-item" style="text-align: center"
+                                        onclick="selectTreatmentType(1)">Fysio- & sportsfysioterapi
+                                    </li>
+                                    <li class="dropdown-item" style="text-align: center"
+                                        onclick="selectTreatmentType(2)">Massage
+                                    </li>
+                                    <li class="dropdown-item" style="text-align: center"
+                                        onclick="selectTreatmentType(3)">Gravid- & efterfødsel
+                                    </li>
+                                    <li class="dropdown-item" style="text-align: center"
+                                        onclick="selectTreatmentType(4)">Lungefysioterapi
+                                    </li>
+
+                                </ul>
+                            </div>
+
+                            <div class="dropdown">
+                                <button type="button" class="btn btnGreen dropdown-toggle dropdownButton"
+                                        data-bs-toggle="dropdown" id="treatmentButton">
+                                    Vælg Behandling
+                                </button>
+                                <ul class="dropdown-menu" id="treatmentSelectionDropDown" style="width: 100%">
+                                    <!--list object should depend on chosen Behandling-->
+                                    <!--this should be done in JS-->
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Choose treatment -->
+                <div id="step3Content" style="display: none;">
+                    <!--                    Step 3: Vælg Employee-->
+                    <div class="container" id="employeesContainer">
+                        <!--                        <div class="btn" id="wildCardEmployeeDiv">-->
+                        <!--                            Vilkårlig Behandler-->
+                        <!--                        </div>-->
+                    </div>
+                </div>
+
+                <!-- Choose day of appointment -->
+                <div id="step4Content" style="display: none;">
+                    <div id="dateInputContainer" class="d-flex justify-content-center" style="width: 100%"></div>
+                    <div class="table table-borderless d-flex justify-content-center">
+                        <table style="width: 75%">
+                            <thead>
+                            <tr>
+                            </tr>
+                            </thead>
+                            <tbody id="timeslots"></tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div id="step5Content" style="display: none;">
+                    <div style="text-align: center">
+                        <p>Din booking er blevet gemt</p>
+                        <p>Du kan nu lukke dette vindue</p>
+                        <button type="button" class="btn btnGreen" data-bs-dismiss="modal" onclick="resetBooking()">
+                            Vend
+                            Tilbage
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer d-flex justify-content-between">
+                <button type="button" id="cancelBtn" class="btn btn-danger" data-bs-dismiss="modal"
+                        onclick="resetBooking()">Afbryd
+                </button>
+                <button type="button" id="continueBtn" class="btn btnGreen" onclick="nextStep()">Fortsæt</button>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>

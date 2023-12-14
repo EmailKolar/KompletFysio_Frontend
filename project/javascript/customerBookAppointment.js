@@ -60,11 +60,8 @@ async function nextStep() {
 
         case 1:
             modalTitle.innerHTML = "Log ind eller Opret"
-            // disableContinueButton()
+            disableContinueButton()
             //logic for customer login or customer Registration
-            // signUpFetch()
-            // logInFetch()
-
             break
         case 2:
             modalTitle.innerHTML = "Vælg Behandling"
